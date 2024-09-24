@@ -8,7 +8,7 @@ import '../blocs/home/home_bloc.dart';
 import '../blocs/home/home_event.dart';
 import '../blocs/home/home_state.dart';
 import '../data/models/note_model.dart';
-import 'display_note_view.dart';
+import 'note_editing_view.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
@@ -81,7 +81,7 @@ class HomeView extends StatelessWidget {
 
   void _navigateToNoteDetail(BuildContext context, NoteModel? note) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => NoteDetailPage(note: note),
+      builder: (context) => NoteEditingView(note: note),
     ));
   }
 }
