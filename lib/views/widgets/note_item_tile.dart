@@ -3,10 +3,15 @@ import 'package:notes_bloc/data/models/note_model.dart';
 
 class NoteItemTile extends StatelessWidget {
   const NoteItemTile(
-      {super.key, required this.note, this.onEdit, this.onDelete});
+      {super.key,
+      required this.note,
+      this.onEdit,
+      this.onDelete,
+      this.onDisplay});
   final NoteModel note;
-  final void Function()? onEdit;
   final void Function()? onDelete;
+  final void Function()? onDisplay;
+  final void Function()? onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +38,7 @@ class NoteItemTile extends StatelessWidget {
             ),
           ],
         ),
-        onTap: () {
-          // todo: add navigating to display note
-        },
+        onTap: onDisplay,
       ),
     );
   }

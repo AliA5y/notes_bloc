@@ -52,6 +52,9 @@ class HomeView extends StatelessWidget {
                     BlocProvider.of<NoteBloc>(context)
                         .add(DeleteNote(id: note.id!));
                   },
+                  onDisplay: () {
+                    // todo: add navigating to display note
+                  },
                 );
               },
             );
