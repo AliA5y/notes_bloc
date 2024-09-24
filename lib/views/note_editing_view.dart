@@ -7,6 +7,7 @@ import '../data/models/note_model.dart';
 
 class NoteEditingView extends StatefulWidget {
   final NoteModel? note;
+  static const id = 'noteEditing';
 
   const NoteEditingView({super.key, this.note});
 

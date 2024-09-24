@@ -4,6 +4,7 @@ import '../data/models/note_model.dart';
 
 class DisplayNoteView extends StatelessWidget {
   final NoteModel note;
+  static const id = 'displayNote';
 
   const DisplayNoteView({super.key, required this.note});
 
