@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/data/repositories/home_repository.dart';
 import 'package:notes_bloc/views/home_view.dart';
+import 'package:notes_bloc/views/splash_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'blocs/home/home_bloc.dart';
 
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeView(),
+        home: const SplashScreen(),
+        routes: {HomeView.id: (context) => HomeView()},
       ),
     );
   }
