@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_bloc/views/display_note_view.dart';
 import 'package:notes_bloc/views/widgets/note_item_tile.dart';
 
 import '../blocs/home/home_bloc.dart';
@@ -13,6 +14,7 @@ import 'note_editing_view.dart';
 class HomeView extends StatelessWidget {
   HomeView({super.key});
   bool hasInitialized = false;
+  static const id = 'home';
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +48,14 @@ class HomeView extends StatelessWidget {
                 return NoteItemTile(
                   note: note,
                   onEdit: () {
-                    _navigateToNoteDetail(context, note);
+                    _navigateToNoteEditingView(context, note);
                   },
                   onDelete: () {
                     BlocProvider.of<NoteBloc>(context)
                         .add(DeleteNote(id: note.id!));
                   },
                   onDisplay: () {
-                    // todo: add navigating to display note
+                    _navigateToDisplayNoteView(context, note);
                   },
                 );
               },
@@ -73,15 +75,21 @@ class HomeView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          _navigateToNoteDetail(context, null);
+          _navigateToNoteEditingView(context, null);
         },
       ),
     );
   }
 
-  void _navigateToNoteDetail(BuildContext context, NoteModel? note) {
+  void _navigateToNoteEditingView(BuildContext context, NoteModel? note) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => NoteEditingView(note: note),
+    ));
+  }
+
+  void _navigateToDisplayNoteView(BuildContext context, NoteModel note) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => DisplayNoteView(note: note),
     ));
   }
 }
