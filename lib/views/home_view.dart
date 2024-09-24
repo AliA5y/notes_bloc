@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_bloc/views/widgets/note_item_tile.dart';
 
 import '../blocs/home/home_bloc.dart';
 import '../blocs/home/home_event.dart';
@@ -37,46 +38,20 @@ class HomeView extends StatelessWidget {
                 child: Text('No notes found'),
               );
             }
-
             return ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: notes.length,
               itemBuilder: (context, index) {
                 final note = notes[index];
-
-                return Card(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
-                  ),
-                  child: ListTile(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
-                    ),
-                    title: Text(note.title),
-                    subtitle: Text(note.content),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () {
-                            BlocProvider.of<NoteBloc>(context)
-                                .add(DeleteNote(id: note.id!));
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {
-                            BlocProvider.of<NoteBloc>(context)
-                                .add(DeleteNote(id: note.id!));
-                          },
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      _navigateToNoteDetail(context, note);
-                    },
-                  ),
+                return NoteItemTile(
+                  note: note,
+                  onEdit: () {
+                    _navigateToNoteDetail(context, note);
+                  },
+                  onDelete: () {
+                    BlocProvider.of<NoteBloc>(context)
+                        .add(DeleteNote(id: note.id!));
+                  },
                 );
               },
             );
