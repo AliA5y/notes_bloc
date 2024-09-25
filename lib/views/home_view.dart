@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/views/display_note_view.dart';
+import 'package:notes_bloc/views/widgets/app_logo_button.dart';
 import 'package:notes_bloc/views/widgets/note_item_tile.dart';
 
 import '../blocs/home/home_bloc.dart';
@@ -24,53 +25,73 @@ class HomeView extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 64,
+        leading: const Row(
+          children: [
+            SizedBox(width: 16),
+            Padding(
+              padding: EdgeInsets.only(top: 6.0, bottom: 6),
+              child: AppLogoButton(),
+            ),
+          ],
+        ),
+        leadingWidth: 150,
         title: const Text('Notes'),
+        actions: [],
+        centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
-      body: BlocBuilder<NoteBloc, NoteState>(
-        builder: (context, state) {
-          if (state is NoteLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is NoteLoadSuccess) {
-            final List<NoteModel> notes = state.notes;
-
-            if (notes.isEmpty) {
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Card(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        ),
+        child: BlocBuilder<NoteBloc, NoteState>(
+          builder: (context, state) {
+            if (state is NoteLoading) {
               return const Center(
-                child: Text('No notes found'),
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is NoteLoadSuccess) {
+              final List<NoteModel> notes = state.notes;
+
+              if (notes.isEmpty) {
+                return const Center(
+                  child: Text('No notes found'),
+                );
+              }
+              return ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: notes.length,
+                itemBuilder: (context, index) {
+                  final note = notes[index];
+                  return NoteItemTile(
+                    note: note,
+                    onEdit: () {
+                      _navigateToNoteEditingView(context, note);
+                    },
+                    onDelete: () {
+                      BlocProvider.of<NoteBloc>(context)
+                          .add(DeleteNote(id: note.id!));
+                    },
+                    onDisplay: () {
+                      _navigateToDisplayNoteView(context, note);
+                    },
+                  );
+                },
+              );
+            } else if (state is NoteOperationFailure) {
+              return Center(
+                child: Text('Failed to load notes: ${state.errorMessage}'),
+              );
+            } else {
+              log(state.toString());
+              return const Center(
+                child: Text('Unknown error'),
               );
             }
-            return ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: notes.length,
-              itemBuilder: (context, index) {
-                final note = notes[index];
-                return NoteItemTile(
-                  note: note,
-                  onEdit: () {
-                    _navigateToNoteEditingView(context, note);
-                  },
-                  onDelete: () {
-                    BlocProvider.of<NoteBloc>(context)
-                        .add(DeleteNote(id: note.id!));
-                  },
-                  onDisplay: () {
-                    _navigateToDisplayNoteView(context, note);
-                  },
-                );
-              },
-            );
-          } else if (state is NoteOperationFailure) {
-            return Center(
-              child: Text('Failed to load notes: ${state.errorMessage}'),
-            );
-          } else {
-            log(state.toString());
-            return const Center(
-              child: Text('Unknown error'),
-            );
-          }
-        },
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
