@@ -57,7 +57,7 @@ class NotesAppDrawer extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 10),
                               child: Center(
                                 child: CustomToggleSwitch(
-                                  size: 33,
+                                  size: 28,
                                   switchAction: () =>
                                       context.read<ThemeCubit>().toggleTheme(),
                                 ),

@@ -12,14 +12,13 @@ class CustomToggleSwitch extends StatefulWidget {
 
 class _CustomToggleSwitchState extends State<CustomToggleSwitch>
     with SingleTickerProviderStateMixin {
-  final double nobStartPosition = 3;
+  late double nobStartPosition = 3;
   late double nobEndPosition;
   bool _isSwitched = false;
   late AnimationController _animationController;
 
   @override
   void initState() {
-    nobEndPosition = widget.size - nobStartPosition;
     super.initState();
 
     _animationController = AnimationController(
@@ -47,6 +46,8 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch>
 
   @override
   Widget build(BuildContext context) {
+    nobStartPosition = widget.size / 12;
+    nobEndPosition = widget.size * (2.2 - 1) - nobStartPosition;
     _isSwitched = Theme.of(context).brightness == Brightness.dark;
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -57,27 +58,24 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch>
             widget.switchAction();
           },
           child: Container(
-            width: widget.size * 2,
-            height: widget.size,
+            width: widget.size * 2.2,
+            height: widget.size + nobStartPosition * 2,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Theme.of(context)
-                    .colorScheme
-                    .inverseSurface
-                    .withAlpha(100)),
+                borderRadius: BorderRadius.circular(widget.size / 4),
+                color: Theme.of(context).colorScheme.inverseSurface),
             child: Stack(
               children: [
                 AnimatedPositioned(
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 250),
                   left: _isSwitched ? nobEndPosition : nobStartPosition,
                   top: nobStartPosition,
                   child: Container(
                     width: widget.size,
-                    height: widget.size - (nobStartPosition * 2),
+                    height: widget.size,
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(6)),
-                      color:
-                          Theme.of(context).colorScheme.surface.withAlpha(250),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(widget.size / 5)),
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                 ),
