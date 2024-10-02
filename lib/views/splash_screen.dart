@@ -32,7 +32,7 @@ class SplashScreenState extends State<SplashScreen>
     );
     _controller2 = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 1200),
     );
 
     // Fade Animation
@@ -51,7 +51,7 @@ class SplashScreenState extends State<SplashScreen>
     ).animate(
       CurvedAnimation(
         parent: _controller2,
-        curve: const Interval(0.9, 1, curve: Curves.easeIn),
+        curve: const Interval(0.8, 1, curve: Curves.easeIn),
       ),
     );
 
@@ -59,7 +59,7 @@ class SplashScreenState extends State<SplashScreen>
     _controller1.forward();
     _controller2.forward();
     Timer(
-      const Duration(milliseconds: 6000),
+      const Duration(milliseconds: 2500),
       () {
         _controller1.stop();
         Navigator.pushReplacementNamed(context, HomeView.id);
