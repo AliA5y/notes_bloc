@@ -8,6 +8,8 @@ import 'package:notes_bloc/views/home_view.dart';
 import 'package:notes_bloc/views/splash_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'blocs/home/home_bloc.dart';
+import 'generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   if (Platform.isWindows || Platform.isLinux) {
@@ -33,6 +35,13 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeCubit, Brightness>(
         builder: (context, brightnessState) {
           return MaterialApp(
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               brightness: brightnessState,

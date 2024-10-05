@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_bloc/generated/l10n.dart';
 import 'package:notes_bloc/views/display_note_view.dart';
 import 'package:notes_bloc/views/widgets/app_logo_button.dart';
 import 'package:notes_bloc/views/widgets/note_item_tile.dart';
@@ -29,7 +30,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 64,
         leadingWidth: 64,
-        iconTheme: IconThemeData(size: 34),
+        iconTheme: const IconThemeData(size: 34),
         actions: const [
           Row(
             children: [
@@ -42,7 +43,7 @@ class HomeView extends StatelessWidget {
           ),
         ],
 
-        title: const Text('Notes'),
+        title: Text(S.of(context).myNotes),
         // actions: [],
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.surface,
