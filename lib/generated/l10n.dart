@@ -99,6 +99,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load notes`
+  String get loadError {
+    return Intl.message(
+      'Failed to load notes',
+      name: 'loadError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick Settings`
+  String get quickSett {
+    return Intl.message(
+      'Quick Settings',
+      name: 'quickSett',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Notes Found`
+  String get emptyNotes {
+    return Intl.message(
+      'No Notes Found',
+      name: 'emptyNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a Note`
+  String get addNote {
+    return Intl.message(
+      'Add a Note',
+      name: 'addNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit a Note`
+  String get EditNote {
+    return Intl.message(
+      'Edit a Note',
+      name: 'EditNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Note Title`
+  String get noteTitle {
+    return Intl.message(
+      'Enter Note Title',
+      name: 'noteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Note Text`
+  String get noteText {
+    return Intl.message(
+      'Enter Note Text',
+      name: 'noteText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

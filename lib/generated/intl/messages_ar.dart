@@ -22,10 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "EditNote": MessageLookupByLibrary.simpleMessage("تعديل ملاحظة"),
+        "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
         "dark": MessageLookupByLibrary.simpleMessage("داكن"),
+        "emptyNotes": MessageLookupByLibrary.simpleMessage("لا توجد ملاحظات"),
         "lang": MessageLookupByLibrary.simpleMessage("اللغة"),
         "light": MessageLookupByLibrary.simpleMessage("فاتح"),
+        "loadError":
+            MessageLookupByLibrary.simpleMessage("فشل أثناء تحميل الملاحظات"),
         "myNotes": MessageLookupByLibrary.simpleMessage("مذكراتي"),
+        "noteText": MessageLookupByLibrary.simpleMessage("أدخل نص الملاحظة"),
+        "noteTitle": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
+        "quickSett": MessageLookupByLibrary.simpleMessage("إعدادات سريعة"),
+        "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "theme": MessageLookupByLibrary.simpleMessage("نمط الإضاءة")
       };
 }

@@ -22,7 +22,7 @@ class QuickToggleSettingTile extends StatelessWidget {
           flex: 2,
           child: Text(
             values['title']!,
-            style: Styles.headlineMedium,
+            style: Styles.headlineSmall,
           ),
         ),
         Expanded(

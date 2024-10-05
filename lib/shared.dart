@@ -3,6 +3,10 @@ import 'package:intl/intl.dart';
 
 class Styles {
   static const headlineMedium = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w500,
+  );
+  static const headlineSmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );

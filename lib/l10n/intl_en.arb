@@ -4,6 +4,13 @@
     "theme":"Theme",
     "dark":"dark",
     "light":"light",
-    "lang":"Language"
-    
+    "lang":"Language",
+    "save":"Save",
+    "loadError":"Failed to load notes",
+    "quickSett":"Quick Settings",
+    "emptyNotes":"No Notes Found",
+    "addNote":"Add a Note",
+    "EditNote":"Edit a Note",
+    "noteTitle":"Enter Note Title",
+    "noteText":"Enter Note Text"
 }

@@ -14,7 +14,7 @@ class NotesAppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: MediaQuery.sizeOf(context).width * 0.7,
+      width: MediaQuery.sizeOf(context).width * 0.85,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: CustomScrollView(
@@ -25,6 +25,7 @@ class NotesAppDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Column(
                   children: [
+                    const SizedBox(height: 16),
                     ListTile(
                       contentPadding: const EdgeInsets.all(0),
                       leading: CircleAvatar(
@@ -44,7 +45,18 @@ class NotesAppDrawer extends StatelessWidget {
                       title: const Text('User Name'),
                       subtitle: const Text('email'),
                     ),
-                    const Divider(height: 32),
+                    const Divider(height: 64),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).quickSett,
+                          textAlign: TextAlign.start,
+                          style: Styles.headlineMedium,
+                        ),
+                      ],
+                    ),
+                    const Divider(height: 24),
                     QuickToggleSettingTile(
                       switchAction: () =>
                           context.read<ThemeCubit>().toggleTheme(),
@@ -56,7 +68,7 @@ class NotesAppDrawer extends StatelessWidget {
                         'second': S.of(context).dark,
                       },
                     ),
-                    const Divider(height: 16),
+                    const Divider(height: 24),
                     QuickToggleSettingTile(
                       switchAction: () async {
                         if (isArabic()) {

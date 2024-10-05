@@ -63,8 +63,8 @@ class HomeView extends StatelessWidget {
               final List<NoteModel> notes = state.notes;
 
               if (notes.isEmpty) {
-                return const Center(
-                  child: Text('No notes found'),
+                return Center(
+                  child: Text(S.of(context).emptyNotes),
                 );
               }
               return ListView.builder(
@@ -89,12 +89,13 @@ class HomeView extends StatelessWidget {
               );
             } else if (state is NoteOperationFailure) {
               return Center(
-                child: Text('Failed to load notes: ${state.errorMessage}'),
+                child:
+                    Text('${S.of(context).loadError}\n${state.errorMessage}'),
               );
             } else {
               log(state.toString());
-              return const Center(
-                child: Text('Unknown error'),
+              return Center(
+                child: Text(S.of(context).loadError),
               );
             }
           },
