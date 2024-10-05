@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/blocs/home/home_bloc.dart';
 import 'package:notes_bloc/blocs/home/home_event.dart';
+import 'package:notes_bloc/generated/l10n.dart';
+import 'package:notes_bloc/shared.dart';
 
 import '../data/models/note_model.dart';
 
@@ -32,7 +36,9 @@ class NoteEditingViewState extends State<NoteEditingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.note == null ? 'Add Note' : 'Edit Note'),
+        title: Text(widget.note == null
+            ? S.of(context).addNote
+            : S.of(context).EditNote),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,17 +47,17 @@ class NoteEditingViewState extends State<NoteEditingView> {
           children: [
             TextField(
               controller: _titleController,
-              decoration: const InputDecoration(
-                labelText: 'Title',
+              decoration: InputDecoration(
+                labelText: S.of(context).noteTitle,
               ),
             ),
             const SizedBox(height: 16.0),
             Expanded(
               child: TextField(
                 controller: _contentController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(borderSide: BorderSide.none),
-                  hintText: 'Content',
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(borderSide: BorderSide.none),
+                  hintText: S.of(context).noteText,
                 ),
                 maxLines: null,
               ),
@@ -60,36 +66,42 @@ class NoteEditingViewState extends State<NoteEditingView> {
             SizedBox(
               height: 56,
               child: MaterialButton(
-                onPressed: () {
-                  final title = _titleController.text;
-                  final content = _contentController.text;
-
-                  if (widget.note == null) {
-                    BlocProvider.of<NoteBloc>(context).add(AddNote(
-                      title: title,
-                      content: content,
-                    ));
-                  } else {
-                    BlocProvider.of<NoteBloc>(context).add(UpdateNote(
-                      id: widget.note!.id!,
-                      title: title,
-                      content: content,
-                    ));
-                  }
-
-                  Navigator.of(context).pop();
-                },
+                onPressed: _handleSubmition,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 color: Theme.of(context).colorScheme.primaryContainer,
-                child: const Center(child: Text('Save')),
+                child: Center(
+                    child:
+                        Text(S.of(context).save, style: Styles.headlineMedium)),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  _handleSubmition() {
+    final title = _titleController.text;
+    final content = _contentController.text;
+    log("${title.length}\n${content.length}");
+    if (widget.note == null) {
+      if (title.isNotEmpty || content.isNotEmpty) {
+        BlocProvider.of<NoteBloc>(context).add(AddNote(
+          title: title,
+          content: content,
+        ));
+      }
+    } else {
+      BlocProvider.of<NoteBloc>(context).add(UpdateNote(
+        id: widget.note!.id!,
+        title: title,
+        content: content,
+      ));
+    }
+
+    Navigator.of(context).pop();
   }
 
   @override
