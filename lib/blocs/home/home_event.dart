@@ -7,16 +7,35 @@ class FetchNotes extends NoteEvent {}
 class AddNote extends NoteEvent {
   final String title;
   final String content;
+  final String language;
+  final String timeStamp;
+  final String dateStamp;
 
-  AddNote({required this.title, required this.content});
+  AddNote({
+    required this.timeStamp,
+    required this.language,
+    required this.title,
+    required this.content,
+    required this.dateStamp,
+  });
 }
 
 class UpdateNote extends NoteEvent {
   final int id;
   final String title;
   final String content;
+  final String language;
+  final String timeStamp;
+  final String dateStamp;
 
-  UpdateNote({required this.id, required this.title, required this.content});
+  UpdateNote({
+    required this.language,
+    required this.id,
+    required this.title,
+    required this.content,
+    required this.timeStamp,
+    required this.dateStamp,
+  });
 }
 
 class DeleteNote extends NoteEvent {

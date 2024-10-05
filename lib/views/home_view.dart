@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/generated/l10n.dart';
+import 'package:notes_bloc/shared.dart';
 import 'package:notes_bloc/views/display_note_view.dart';
 import 'package:notes_bloc/views/widgets/app_logo_button.dart';
 import 'package:notes_bloc/views/widgets/note_item_tile.dart';
@@ -64,7 +65,8 @@ class HomeView extends StatelessWidget {
 
               if (notes.isEmpty) {
                 return Center(
-                  child: Text(S.of(context).emptyNotes),
+                  child: Text(S.of(context).emptyNotes,
+                      style: Styles.headlineMedium),
                 );
               }
               return ListView.builder(

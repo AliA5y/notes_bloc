@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../blocs/home/home_bloc.dart';
 import '../blocs/home/home_event.dart';
@@ -59,16 +60,25 @@ class NotePageState extends State<NotePage> {
                 final content = _contentController.text;
 
                 if (widget.note == null) {
+                  final dateTime = MyDateTime.fromDateTime(DateTime.now());
                   BlocProvider.of<NoteBloc>(context).add(AddNote(
                     title: title,
                     content: content,
+                    language: Intl.getCurrentLocale(),
+                    timeStamp: dateTime.time,
+                    dateStamp: dateTime.date,
                   ));
                 } else {
-                  BlocProvider.of<NoteBloc>(context).add(UpdateNote(
-                    id: widget.note!.id!,
-                    title: title,
-                    content: content,
-                  ));
+                  BlocProvider.of<NoteBloc>(context).add(
+                    UpdateNote(
+                      id: widget.note!.id!,
+                      title: title,
+                      content: content,
+                      language: widget.note!.language,
+                      timeStamp: widget.note!.timeStamp,
+                      dateStamp: widget.note!.dateStamp,
+                    ),
+                  );
                 }
 
                 Navigator.of(context).pop();

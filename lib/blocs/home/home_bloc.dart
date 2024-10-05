@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/models/note_model.dart';
 import '../../data/repositories/home_repository.dart';
 import 'home_event.dart';
@@ -26,6 +25,9 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
             NoteModel(
               title: event.title,
               content: event.content,
+              language: event.language,
+              timeStamp: event.timeStamp,
+              dateStamp: event.dateStamp,
             ),
           );
           final List<NoteModel> notes = await noteRepository.getAllNotes();
@@ -42,6 +44,9 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
               id: event.id,
               title: event.title,
               content: event.content,
+              language: event.language,
+              timeStamp: event.timeStamp,
+              dateStamp: event.dateStamp,
             ),
           );
           final List<NoteModel> notes = await noteRepository.getAllNotes();

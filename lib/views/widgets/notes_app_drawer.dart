@@ -84,10 +84,6 @@ class NotesAppDrawer extends StatelessWidget {
                                   .read<LanguageCubit>()
                                   .changeLanguage('ar');
                             }
-
-                            if (context.mounted) {
-                              Navigator.pop(context);
-                            }
                           },
                           isSwitched: !isArabic(),
                           values: {

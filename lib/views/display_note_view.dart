@@ -14,7 +14,7 @@ class DisplayNoteView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           note.title,
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: Padding(
@@ -26,7 +26,7 @@ class DisplayNoteView extends StatelessWidget {
               child: SizedBox(
                 child: Text(
                   note.content,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
             ),

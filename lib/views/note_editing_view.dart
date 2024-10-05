@@ -2,12 +2,16 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:notes_bloc/blocs/home/home_bloc.dart';
 import 'package:notes_bloc/blocs/home/home_event.dart';
+import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/generated/l10n.dart';
 import 'package:notes_bloc/shared.dart';
 
 import '../data/models/note_model.dart';
+
+const languages = ['عربي', 'English'];
 
 class NoteEditingView extends StatefulWidget {
   final NoteModel? note;
@@ -22,9 +26,11 @@ class NoteEditingView extends StatefulWidget {
 class NoteEditingViewState extends State<NoteEditingView> {
   late TextEditingController _titleController;
   late TextEditingController _contentController;
+  late String language;
 
   @override
   void initState() {
+    language = Intl.getCurrentLocale();
     super.initState();
 
     _titleController = TextEditingController(text: widget.note?.title ?? '');
@@ -45,11 +51,69 @@ class NoteEditingViewState extends State<NoteEditingView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                labelText: S.of(context).noteTitle,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      labelText: S.of(context).noteTitle,
+                    ),
+                  ),
+                ),
+                widget.note == null
+                    ? GestureDetector(
+                        onTapDown: (details) {
+                          final offset = details.globalPosition;
+                          showMenu(
+                            context: context,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12))),
+                            position: RelativeRect.fromLTRB(
+                                offset.dx,
+                                offset.dy,
+                                MediaQuery.sizeOf(context).width - offset.dx,
+                                MediaQuery.sizeOf(context).height - offset.dy),
+                            items: List.generate(
+                              2,
+                              (index) {
+                                return PopupMenuItem(
+                                  onTap: () {
+                                    language = index == 0
+                                        ? 'ar'
+                                        : languages[index]
+                                            .substring(0, 2)
+                                            .toLowerCase();
+                                    log(language);
+                                    if (!isArabic() && language == 'ar') {
+                                      context
+                                          .read<LanguageCubit>()
+                                          .changeLanguage(language);
+                                    } else if (isArabic() && language == 'en') {
+                                      context
+                                          .read<LanguageCubit>()
+                                          .changeLanguage(language);
+                                    }
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      languages[index],
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        child: const Icon(
+                          Icons.language,
+                        ),
+                      )
+                    : const SizedBox(),
+              ],
             ),
             const SizedBox(height: 16.0),
             Expanded(
@@ -88,16 +152,24 @@ class NoteEditingViewState extends State<NoteEditingView> {
     log("${title.length}\n${content.length}");
     if (widget.note == null) {
       if (title.isNotEmpty || content.isNotEmpty) {
-        BlocProvider.of<NoteBloc>(context).add(AddNote(
-          title: title,
-          content: content,
-        ));
+        final dateTime = MyDateTime.fromDateTime(DateTime.now());
+        BlocProvider.of<NoteBloc>(context).add(
+          AddNote(
+              title: title,
+              content: content,
+              language: language,
+              timeStamp: dateTime.time,
+              dateStamp: dateTime.date),
+        );
       }
     } else {
       BlocProvider.of<NoteBloc>(context).add(UpdateNote(
         id: widget.note!.id!,
         title: title,
         content: content,
+        language: language,
+        timeStamp: widget.note!.timeStamp,
+        dateStamp: widget.note!.dateStamp,
       ));
     }
 

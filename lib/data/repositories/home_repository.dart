@@ -28,7 +28,10 @@ class NoteRepository {
           CREATE TABLE notes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
-            content TEXT
+            content TEXT,
+            timeStamp TEXT,
+            language TEXT,
+            dateStamp TEXT
           )
         ''');
       },
@@ -41,10 +44,12 @@ class NoteRepository {
 
     return notes.map((note) {
       return NoteModel(
-        id: note['id'],
-        title: note['title'],
-        content: note['content'],
-      );
+          id: note['id'],
+          title: note['title'],
+          content: note['content'],
+          language: note['language'],
+          timeStamp: note['timeStamp'],
+          dateStamp: note['dateStamp']);
     }).toList();
   }
 
