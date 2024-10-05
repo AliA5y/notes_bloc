@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_bloc/cubits/theme_cubit/theme_cubit.dart';
 import 'package:notes_bloc/data/repositories/home_repository.dart';
 import 'package:notes_bloc/views/home_view.dart';
 import 'package:notes_bloc/views/splash_screen.dart';
@@ -25,14 +26,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NoteRepository repo = NoteRepository.instance;
-    return BlocProvider(
-      create: (context) {
-        return NoteBloc(repo);
-      },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: const SplashScreen(),
-        routes: {HomeView.id: (context) => HomeView()},
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ThemeCubit()),
+      ],
+      child: BlocBuilder<ThemeCubit, Brightness>(
+        builder: (context, brightnessState) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              brightness: brightnessState,
+            ),
+            home: const SplashScreen(),
+            routes: {
+              HomeView.id: (context) => BlocProvider(
+                    create: (context) => NoteBloc(repo),
+                    child: HomeView(),
+                  )
+            },
+          );
+        },
       ),
     );
   }

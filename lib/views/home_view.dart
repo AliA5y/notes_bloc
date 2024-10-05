@@ -11,6 +11,7 @@ import '../blocs/home/home_event.dart';
 import '../blocs/home/home_state.dart';
 import '../data/models/note_model.dart';
 import 'note_editing_view.dart';
+import 'widgets/notes_app_drawer.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
@@ -24,20 +25,25 @@ class HomeView extends StatelessWidget {
       hasInitialized = true;
     }
     return Scaffold(
+      drawer: const NotesAppDrawer(),
       appBar: AppBar(
         toolbarHeight: 64,
-        leading: const Row(
-          children: [
-            SizedBox(width: 16),
-            Padding(
-              padding: EdgeInsets.only(top: 6.0, bottom: 6),
-              child: AppLogoButton(),
-            ),
-          ],
-        ),
-        leadingWidth: 150,
+        leadingWidth: 64,
+        iconTheme: IconThemeData(size: 34),
+        actions: const [
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 6.0, bottom: 6),
+                child: AppLogoButton(),
+              ),
+              SizedBox(width: 16),
+            ],
+          ),
+        ],
+
         title: const Text('Notes'),
-        actions: [],
+        // actions: [],
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.surface,
       ),
@@ -103,8 +109,12 @@ class HomeView extends StatelessWidget {
   }
 
   void _navigateToNoteEditingView(BuildContext context, NoteModel? note) {
+    final noteBloc = context.read<NoteBloc>();
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => NoteEditingView(note: note),
+      builder: (context) => BlocProvider.value(
+        value: noteBloc,
+        child: NoteEditingView(note: note),
+      ),
     ));
   }
 
