@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/cubits/theme_cubit/theme_cubit.dart';
 import 'package:notes_bloc/data/repositories/home_repository.dart';
 import 'package:notes_bloc/views/home_view.dart';
@@ -15,10 +16,11 @@ void main() {
   if (Platform.isWindows || Platform.isLinux) {
     // Initialize FFI
     sqfliteFfiInit();
+    // Change the default factory. On iOS/Android, if not using `sqlite_flutter_lib` you can forget
+    // this step, it will use the sqlite version available on the system.
+    databaseFactory = databaseFactoryFfi;
   }
-  // Change the default factory. On iOS/Android, if not using `sqlite_flutter_lib` you can forget
-  // this step, it will use the sqlite version available on the system.
-  databaseFactory = databaseFactoryFfi;
+
   runApp(const MyApp());
 }
 
@@ -31,27 +33,36 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => LanguageCubit()),
       ],
-      child: BlocBuilder<ThemeCubit, Brightness>(
-        builder: (context, brightnessState) {
-          return MaterialApp(
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              brightness: brightnessState,
-            ),
-            home: const SplashScreen(),
-            routes: {
-              HomeView.id: (context) => BlocProvider(
-                    create: (context) => NoteBloc(repo),
-                    child: HomeView(),
-                  )
+      child: BlocBuilder<LanguageCubit, LanguageState>(
+        builder: (context, state) {
+          return BlocBuilder<ThemeCubit, Brightness>(
+            builder: (context, brightnessState) {
+              return MaterialApp(
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                locale: Locale(context.read<LanguageCubit>().language),
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                  colorScheme: ColorScheme.fromSeed(
+                    brightness: brightnessState,
+                    seedColor: const Color(0xFF20B4F0),
+                  ),
+                ),
+                home: const SplashScreen(),
+                routes: {
+                  HomeView.id: (context) => BlocProvider(
+                        create: (context) => NoteBloc(repo),
+                        child: HomeView(),
+                      )
+                },
+              );
             },
           );
         },

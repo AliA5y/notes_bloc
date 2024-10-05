@@ -23,8 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "dark": MessageLookupByLibrary.simpleMessage("داكن"),
+        "lang": MessageLookupByLibrary.simpleMessage("اللغة"),
         "light": MessageLookupByLibrary.simpleMessage("فاتح"),
         "myNotes": MessageLookupByLibrary.simpleMessage("مذكراتي"),
-        "theme": MessageLookupByLibrary.simpleMessage("نط الإضاءة")
+        "theme": MessageLookupByLibrary.simpleMessage("نمط الإضاءة")
       };
 }

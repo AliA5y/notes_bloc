@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 class Styles {
   static const headlineMedium = TextStyle(
@@ -10,4 +11,8 @@ class Styles {
 class PrefsKeys {
   static const String languageKey = 'language';
   static const String themeKey = 'theme';
+}
+
+bool isArabic() {
+  return Intl.getCurrentLocale() == 'ar';
 }

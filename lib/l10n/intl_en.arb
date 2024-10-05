@@ -3,5 +3,7 @@
     "myNotes":"My Notes",
     "theme":"Theme",
     "dark":"dark",
-    "light":"light"
+    "light":"light",
+    "lang":"Language"
+    
 }
