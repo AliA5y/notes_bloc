@@ -23,68 +23,99 @@ class NotesAppDrawer extends StatelessWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Column(
+                child: Stack(
                   children: [
-                    const SizedBox(height: 16),
-                    ListTile(
-                      contentPadding: const EdgeInsets.all(0),
-                      leading: CircleAvatar(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.inverseSurface,
-                        radius: 25,
-                        child: const Padding(
-                          padding: EdgeInsets.all(2.0),
-                          child: CircleAvatar(
-                            radius: 20,
-                            // child: Container(
-                            //   decoration: BoxDecoration(shape: BoxShape.circle),
-                            // ),
+                    Column(
+                      children: [
+                        const SizedBox(height: 16),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.25,
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                radius:
+                                    MediaQuery.sizeOf(context).height * 0.075,
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .inverseSurface
+                                    .withAlpha(100),
+                              ),
+                              const SizedBox(height: 12),
+                              Text('Name', style: Styles.headlineLarge)
+                            ],
                           ),
                         ),
-                      ),
-                      title: const Text('User Name'),
-                      subtitle: const Text('email'),
-                    ),
-                    const Divider(height: 64),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          S.of(context).quickSett,
-                          textAlign: TextAlign.start,
-                          style: Styles.headlineMedium,
+                        const Divider(height: 32),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              S.of(context).quickSett,
+                              textAlign: TextAlign.start,
+                              style: Styles.headlineMedium,
+                            ),
+                          ],
                         ),
+                        const Divider(height: 24),
+                        QuickToggleSettingTile(
+                          switchAction: () =>
+                              context.read<ThemeCubit>().toggleTheme(),
+                          isSwitched:
+                              Theme.of(context).brightness == Brightness.dark,
+                          values: {
+                            'title': S.of(context).theme,
+                            'first': isArabic()
+                                ? S.of(context).dark
+                                : S.of(context).light,
+                            'second': isArabic()
+                                ? S.of(context).light
+                                : S.of(context).dark,
+                          },
+                        ),
+                        const Divider(height: 24),
+                        QuickToggleSettingTile(
+                          switchAction: () async {
+                            if (isArabic()) {
+                              context
+                                  .read<LanguageCubit>()
+                                  .changeLanguage('en');
+                            } else {
+                              context
+                                  .read<LanguageCubit>()
+                                  .changeLanguage('ar');
+                            }
+
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                            }
+                          },
+                          isSwitched: !isArabic(),
+                          values: {
+                            'title': S.of(context).lang,
+                            'first': isArabic() ? 'English' : 'العربية',
+                            'second': isArabic() ? 'العربية' : 'English',
+                          },
+                        )
                       ],
                     ),
-                    const Divider(height: 24),
-                    QuickToggleSettingTile(
-                      switchAction: () =>
-                          context.read<ThemeCubit>().toggleTheme(),
-                      isSwitched:
-                          Theme.of(context).brightness == Brightness.dark,
-                      values: {
-                        'title': S.of(context).theme,
-                        'first': S.of(context).light,
-                        'second': S.of(context).dark,
-                      },
-                    ),
-                    const Divider(height: 24),
-                    QuickToggleSettingTile(
-                      switchAction: () async {
-                        if (isArabic()) {
-                          context.read<LanguageCubit>().changeLanguage('en');
-                        } else {
-                          context.read<LanguageCubit>().changeLanguage('ar');
-                        }
-                        Navigator.pop(context);
-                      },
-                      isSwitched: !isArabic(),
-                      values: {
-                        'title': S.of(context).lang,
-                        'first': 'العربية',
-                        'second': 'English',
-                      },
-                    )
+                    Positioned(
+                        top: 16,
+                        left: 0,
+                        right: 0,
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.edit,
+                                size: 30,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                          ],
+                        ))
                   ],
                 ),
               ),

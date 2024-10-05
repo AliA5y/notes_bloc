@@ -2,6 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 class Styles {
+  static const headlineLarge = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
   static const headlineMedium = TextStyle(
     fontSize: 17,
     fontWeight: FontWeight.w500,
