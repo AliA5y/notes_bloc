@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomToggleSwitch extends StatefulWidget {
   const CustomToggleSwitch(
-      {super.key, required this.size, required this.switchAction});
+      {super.key,
+      required this.size,
+      required this.switchAction,
+      required this.isSwitched});
   final double size;
   final void Function() switchAction;
+  final bool isSwitched;
 
   @override
   State<CustomToggleSwitch> createState() => _CustomToggleSwitchState();
@@ -48,7 +52,7 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch>
   Widget build(BuildContext context) {
     nobStartPosition = widget.size / 12;
     nobEndPosition = widget.size * (2.2 - 1) - nobStartPosition;
-    _isSwitched = Theme.of(context).brightness == Brightness.dark;
+    _isSwitched = widget.isSwitched;
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
