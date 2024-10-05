@@ -35,8 +35,10 @@ dependencies:
   flutter_bloc: ^8.1.4
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^2.0.10+1
   intl: ^0.19.0
   line_icons: ^2.0.3
+  multiavatar: ^0.1.5
   path: ^1.9.0
   shared_preferences: ^2.3.2
   sqflite: ^2.3.2
