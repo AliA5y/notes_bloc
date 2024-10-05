@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_bloc/shared.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_state.dart';
@@ -13,13 +14,13 @@ class ThemeCubit extends Cubit<Brightness> {
     final themeIndex = brightness == Brightness.light ? 0 : 1;
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    await sharedPreferences.setInt('theme', themeIndex);
+    await sharedPreferences.setInt(PrefsKeys.themeKey, themeIndex);
   }
 
   Future<void> _getThemeFromPrefs() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    final savedThemeIndex = sharedPreferences.getInt('theme') ?? 0;
+    final savedThemeIndex = sharedPreferences.getInt(PrefsKeys.themeKey) ?? 0;
     final savedTheme =
         savedThemeIndex == 0 ? Brightness.light : Brightness.dark;
     emit(savedTheme);

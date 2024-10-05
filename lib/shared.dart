@@ -6,3 +6,8 @@ class Styles {
     fontWeight: FontWeight.w500,
   );
 }
+
+class PrefsKeys {
+  static const String languageKey = 'language';
+  static const String themeKey = 'theme';
+}
