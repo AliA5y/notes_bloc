@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 import 'package:notes_bloc/data/models/user.dart';
 import 'package:notes_bloc/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
