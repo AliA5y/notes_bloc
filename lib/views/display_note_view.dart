@@ -16,6 +16,8 @@ class DisplayNoteView extends StatelessWidget {
           note.title,
           style: Theme.of(context).textTheme.titleLarge,
         ),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        surfaceTintColor: Colors.transparent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -23,10 +25,12 @@ class DisplayNoteView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: SizedBox(
-                child: Text(
-                  note.content,
-                  style: Theme.of(context).textTheme.titleMedium,
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  child: Text(
+                    note.content,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                 ),
               ),
             ),
