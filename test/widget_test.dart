@@ -7,13 +7,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 
 import 'package:notes_bloc/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    final lanCubit = LanguageCubit();
+    await lanCubit.initLanguage();
+    await tester.pumpWidget(MyApp(lanCubit: lanCubit));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
