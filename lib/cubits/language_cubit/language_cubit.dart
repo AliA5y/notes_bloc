@@ -8,9 +8,8 @@ part 'language_state.dart';
 class LanguageCubit extends Cubit<LanguageState> {
   LanguageCubit()
       : _language = 'ar',
-        super(LanguageInitial()) {
-    _initLanguage();
-  }
+        super(LanguageInitial());
+
   _initPrefs() async {
     prefs = await SharedPreferences.getInstance();
   }
@@ -18,16 +17,16 @@ class LanguageCubit extends Cubit<LanguageState> {
   late SharedPreferences prefs;
   String _language;
 
-  // bool get onBoarded {
-  //   return prefs.getBool(PrefsKeys.onboardingKey) ?? false;
-  // }
+  bool get onBoarded {
+    return prefs.getBool('onboarded') ?? false;
+  }
 
   // bool get introduced {
   //   return prefs.getBool(PrefsKeys.tourKey) ?? false;
   // }
 
   String get language => _language;
-  _initLanguage() async {
+  initLanguage() async {
     await _initPrefs();
     emit(LanguageChangeLoading());
     _language = prefs.getString(PrefsKeys.languageKey) ?? 'ar';
@@ -41,9 +40,9 @@ class LanguageCubit extends Cubit<LanguageState> {
     emit(LanguageChangeSuccess());
   }
 
-  // void onBoard() async {
-  //   prefs.setBool(PrefsKeys.onboardingKey, true);
-  // }
+  void onBoard() async {
+    prefs.setBool('onboarded', true);
+  }
 
   // void setIntroduced() async {
   //   prefs.setBool(PrefsKeys.tourKey, true);

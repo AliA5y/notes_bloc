@@ -13,7 +13,8 @@ import 'blocs/home/home_bloc.dart';
 import 'generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux) {
     // Initialize FFI
     sqfliteFfiInit();
@@ -21,12 +22,14 @@ void main() {
     // this step, it will use the sqlite version available on the system.
     databaseFactory = databaseFactoryFfi;
   }
-
-  runApp(const MyApp());
+  final lanCubit = LanguageCubit();
+  await lanCubit.initLanguage();
+  runApp(MyApp(lanCubit: lanCubit));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.lanCubit});
+  final LanguageCubit lanCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ThemeCubit()),
-        BlocProvider(create: (context) => LanguageCubit()),
+        BlocProvider(create: (context) => lanCubit),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
