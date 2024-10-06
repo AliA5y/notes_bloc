@@ -8,6 +8,7 @@ import 'package:notes_bloc/blocs/home/home_event.dart';
 import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/generated/l10n.dart';
 import 'package:notes_bloc/shared.dart';
+import 'package:notes_bloc/views/widgets/submit_button.dart';
 
 import '../data/models/note_model.dart';
 
@@ -127,18 +128,9 @@ class NoteEditingViewState extends State<NoteEditingView> {
               ),
             ),
             const SizedBox(height: 16.0),
-            SizedBox(
-              height: 56,
-              child: MaterialButton(
-                onPressed: _handleSubmition,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                ),
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: Center(
-                    child:
-                        Text(S.of(context).save, style: Styles.headlineMedium)),
-              ),
+            SubmittButton(
+              text: S.of(context).save,
+              onPressed: _handleSubmition,
             ),
           ],
         ),

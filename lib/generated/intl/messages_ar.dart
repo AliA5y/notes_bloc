@@ -24,17 +24,24 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EditNote": MessageLookupByLibrary.simpleMessage("تعديل ملاحظة"),
         "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
+        "chooseAvatar":
+            MessageLookupByLibrary.simpleMessage("إختر صورة تعبيرية"),
         "dark": MessageLookupByLibrary.simpleMessage("داكن"),
+        "editProfile":
+            MessageLookupByLibrary.simpleMessage("تعديل صفحة المستخدم"),
         "emptyNotes": MessageLookupByLibrary.simpleMessage("لا توجد ملاحظات"),
         "lang": MessageLookupByLibrary.simpleMessage("اللغة"),
         "light": MessageLookupByLibrary.simpleMessage("فاتح"),
         "loadError":
             MessageLookupByLibrary.simpleMessage("فشل أثناء تحميل الملاحظات"),
         "myNotes": MessageLookupByLibrary.simpleMessage("مذكراتي"),
+        "nameFieldHint":
+            MessageLookupByLibrary.simpleMessage("أدخل إسم المستخدم"),
         "noteText": MessageLookupByLibrary.simpleMessage("أدخل نص الملاحظة"),
         "noteTitle": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
         "quickSett": MessageLookupByLibrary.simpleMessage("إعدادات سريعة"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
-        "theme": MessageLookupByLibrary.simpleMessage("نمط الإضاءة")
+        "theme": MessageLookupByLibrary.simpleMessage("نمط الإضاءة"),
+        "userName": MessageLookupByLibrary.simpleMessage("إسم المستخدم")
       };
 }

@@ -12,5 +12,9 @@
     "addNote":"Add a Note",
     "EditNote":"Edit a Note",
     "noteTitle":"Enter Note Title",
-    "noteText":"Enter Note Text"
+    "noteText":"Enter Note Text",
+    "userName":"User Name",
+    "editProfile":"Edit Profile",
+    "nameFieldHint":"Enter You User Name",
+    "chooseAvatar":"Choose Avatar"
 }

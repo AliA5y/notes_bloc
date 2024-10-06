@@ -67,8 +67,4 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       }
     });
   }
-
-  // Stream<NoteState> mapEventToState(NoteEvent event) async* {
-  //
-  // }
 }

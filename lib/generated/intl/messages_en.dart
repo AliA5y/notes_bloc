@@ -24,17 +24,22 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EditNote": MessageLookupByLibrary.simpleMessage("Edit a Note"),
         "addNote": MessageLookupByLibrary.simpleMessage("Add a Note"),
+        "chooseAvatar": MessageLookupByLibrary.simpleMessage("Choose Avatar"),
         "dark": MessageLookupByLibrary.simpleMessage("dark"),
+        "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "emptyNotes": MessageLookupByLibrary.simpleMessage("No Notes Found"),
         "lang": MessageLookupByLibrary.simpleMessage("Language"),
         "light": MessageLookupByLibrary.simpleMessage("light"),
         "loadError":
             MessageLookupByLibrary.simpleMessage("Failed to load notes"),
         "myNotes": MessageLookupByLibrary.simpleMessage("My Notes"),
+        "nameFieldHint":
+            MessageLookupByLibrary.simpleMessage("Enter You User Name"),
         "noteText": MessageLookupByLibrary.simpleMessage("Enter Note Text"),
         "noteTitle": MessageLookupByLibrary.simpleMessage("Enter Note Title"),
         "quickSett": MessageLookupByLibrary.simpleMessage("Quick Settings"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
-        "theme": MessageLookupByLibrary.simpleMessage("Theme")
+        "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "userName": MessageLookupByLibrary.simpleMessage("User Name")
       };
 }

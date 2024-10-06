@@ -179,6 +179,46 @@ class S {
       args: [],
     );
   }
+
+  /// `User Name`
+  String get userName {
+    return Intl.message(
+      'User Name',
+      name: 'userName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter You User Name`
+  String get nameFieldHint {
+    return Intl.message(
+      'Enter You User Name',
+      name: 'nameFieldHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Avatar`
+  String get chooseAvatar {
+    return Intl.message(
+      'Choose Avatar',
+      name: 'chooseAvatar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

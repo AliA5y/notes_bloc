@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/cubits/theme_cubit/theme_cubit.dart';
 import 'package:notes_bloc/data/repositories/home_repository.dart';
+import 'package:notes_bloc/views/edit_profile_view.dart';
 import 'package:notes_bloc/views/home_view.dart';
 import 'package:notes_bloc/views/splash_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
                 ),
                 home: const SplashScreen(),
                 routes: {
+                  EditProfileView.id: (context) => const EditProfileView(),
                   HomeView.id: (context) => BlocProvider(
                         create: (context) => NoteBloc(repo),
                         child: HomeView(),

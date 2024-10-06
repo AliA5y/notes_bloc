@@ -41,6 +41,7 @@ dependencies:
   multiavatar: ^0.1.5
   path: ^1.9.0
   shared_preferences: ^2.3.2
+  skeletonizer: ^1.4.2
   sqflite: ^2.3.2
   sqflite_common_ffi: ^2.3.3
   url_launcher: ^6.3.0

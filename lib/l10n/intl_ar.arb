@@ -12,5 +12,9 @@
     "addNote":"إضافة ملاحظة",
     "EditNote":"تعديل ملاحظة",
     "noteTitle":"أدخل العنوان",
-    "noteText":"أدخل نص الملاحظة"
+    "noteText":"أدخل نص الملاحظة",
+    "userName":"إسم المستخدم",
+    "editProfile":"تعديل صفحة المستخدم",
+    "nameFieldHint":"أدخل إسم المستخدم",
+    "chooseAvatar":"إختر صورة تعبيرية"
 }
