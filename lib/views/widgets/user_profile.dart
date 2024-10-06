@@ -26,17 +26,19 @@ class UserProfile extends StatelessWidget {
                 Column(
                   children: [
                     Center(
-                      child: CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withAlpha(100),
-                        child: state is UserloadSuccess
-                            ? SvgPicture.string(multiavatar(state.user.avatar,
-                                trBackground: true))
-                            : const CircleAvatar(),
-                      ),
+                      child: state is UserloadSuccess
+                          ? CircleAvatar(
+                              radius: 60,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withAlpha(100),
+                              child: SvgPicture.string(multiavatar(
+                                  '${state.user.avatarCode}',
+                                  trBackground: true)))
+                          : const CircleAvatar(
+                              radius: 60,
+                            ),
                     ),
                     const SizedBox(height: 12),
                     Text(state is UserloadSuccess ? state.user.name : '',
@@ -59,7 +61,9 @@ class UserProfile extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => BlocProvider.value(
                                           value: userCubit,
-                                          child: const EditProfileView(),
+                                          child: EditProfileView(
+                                              user: (state as UserloadSuccess)
+                                                  .user),
                                         )));
                           },
                           icon: Icon(

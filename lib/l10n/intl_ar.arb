@@ -14,7 +14,10 @@
     "noteTitle":"أدخل العنوان",
     "noteText":"أدخل نص الملاحظة",
     "userName":"إسم المستخدم",
-    "editProfile":"تعديل صفحة المستخدم",
+    "editProfile":"الصفحة الشخصية",
     "nameFieldHint":"أدخل إسم المستخدم",
-    "chooseAvatar":"إختر صورة تعبيرية"
+    "chooseAvatar":"إختر صورة تعبيرية",
+    "developed":"مطور التطبيق",
+    "myname":"علي عبدالرحمن",
+    "obT5":"رائع!"
 }

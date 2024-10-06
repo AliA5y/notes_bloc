@@ -26,7 +26,7 @@ class NoteItemTile extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         onPressed: onDisplay,
         child: SizedBox(
-          height: 154,
+          height: 142,
           child: Card(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -51,7 +51,7 @@ class NoteItemTile extends StatelessWidget {
                             flex: 2,
                             child: Text(
                               note.content,
-                              maxLines: 2,
+                              maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -59,9 +59,10 @@ class NoteItemTile extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Expanded(
                             flex: 2,
@@ -84,6 +85,7 @@ class NoteItemTile extends StatelessWidget {
                           Expanded(
                             flex: 2,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
                                   note.timeStamp,

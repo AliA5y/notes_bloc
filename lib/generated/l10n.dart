@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `Edit Profile`
+  /// `User Profile`
   String get editProfile {
     return Intl.message(
-      'Edit Profile',
+      'User Profile',
       name: 'editProfile',
       desc: '',
       args: [],
@@ -215,6 +215,36 @@ class S {
     return Intl.message(
       'Choose Avatar',
       name: 'chooseAvatar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Developed By`
+  String get developed {
+    return Intl.message(
+      'Developed By',
+      name: 'developed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ali Alzaidy`
+  String get myname {
+    return Intl.message(
+      'Ali Alzaidy',
+      name: 'myname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Great!`
+  String get obT5 {
+    return Intl.message(
+      'Great!',
+      name: 'obT5',
       desc: '',
       args: [],
     );

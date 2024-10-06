@@ -14,7 +14,10 @@
     "noteTitle":"Enter Note Title",
     "noteText":"Enter Note Text",
     "userName":"User Name",
-    "editProfile":"Edit Profile",
+    "editProfile":"User Profile",
     "nameFieldHint":"Enter You User Name",
-    "chooseAvatar":"Choose Avatar"
+    "chooseAvatar":"Choose Avatar",
+    "developed":"Developed By",
+    "myname":"Ali Alzaidy",
+    "obT5":"Great!"
 }

@@ -27,18 +27,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseAvatar":
             MessageLookupByLibrary.simpleMessage("إختر صورة تعبيرية"),
         "dark": MessageLookupByLibrary.simpleMessage("داكن"),
-        "editProfile":
-            MessageLookupByLibrary.simpleMessage("تعديل صفحة المستخدم"),
+        "developed": MessageLookupByLibrary.simpleMessage("مطور التطبيق"),
+        "editProfile": MessageLookupByLibrary.simpleMessage("الصفحة الشخصية"),
         "emptyNotes": MessageLookupByLibrary.simpleMessage("لا توجد ملاحظات"),
         "lang": MessageLookupByLibrary.simpleMessage("اللغة"),
         "light": MessageLookupByLibrary.simpleMessage("فاتح"),
         "loadError":
             MessageLookupByLibrary.simpleMessage("فشل أثناء تحميل الملاحظات"),
         "myNotes": MessageLookupByLibrary.simpleMessage("مذكراتي"),
+        "myname": MessageLookupByLibrary.simpleMessage("علي عبدالرحمن"),
         "nameFieldHint":
             MessageLookupByLibrary.simpleMessage("أدخل إسم المستخدم"),
         "noteText": MessageLookupByLibrary.simpleMessage("أدخل نص الملاحظة"),
         "noteTitle": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
+        "obT5": MessageLookupByLibrary.simpleMessage("رائع!"),
         "quickSett": MessageLookupByLibrary.simpleMessage("إعدادات سريعة"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "theme": MessageLookupByLibrary.simpleMessage("نمط الإضاءة"),

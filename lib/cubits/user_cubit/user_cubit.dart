@@ -13,13 +13,14 @@ class UserCubit extends Cubit<UserState> {
   _initUser() async {
     final prefs = await SharedPreferences.getInstance();
     final name = prefs.getString('name') ?? S.current.userName;
-    final avatar = prefs.getString('avatar') ?? 'zb';
-    user = User(name: name, avatar: avatar);
+    final avatar = prefs.getInt('avatar') ?? 15;
+    user = User(name: name, avatarCode: avatar);
   }
 
   loadUser() async {
     emit(UserLoadLoading());
     await _initUser();
+    await Future.delayed(const Duration(milliseconds: 10));
     emit(UserloadSuccess(user: user));
   }
 }
