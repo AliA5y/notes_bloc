@@ -59,6 +59,14 @@ class MyApp extends StatelessWidget {
                     seedColor: const Color(0xFF20B4F0),
                   ),
                 ),
+                builder: (context, child) {
+                  return MediaQuery(
+                      data: MediaQuery.of(context).copyWith(
+                        textScaler: MediaQuery.textScalerOf(context)
+                            .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.2),
+                      ),
+                      child: child!);
+                },
                 home: const SplashScreen(),
                 routes: {
                   EditProfileView.id: (context) => const EditProfileView(),
