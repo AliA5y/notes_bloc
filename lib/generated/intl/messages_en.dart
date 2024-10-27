@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "editProfile": MessageLookupByLibrary.simpleMessage("User Profile"),
         "emptyNotes": MessageLookupByLibrary.simpleMessage("No Notes Found"),
         "lang": MessageLookupByLibrary.simpleMessage("Language"),
+        "language": MessageLookupByLibrary.simpleMessage("choose a language"),
         "light": MessageLookupByLibrary.simpleMessage("light"),
         "loadError":
             MessageLookupByLibrary.simpleMessage("Failed to load notes"),
@@ -42,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "obT5": MessageLookupByLibrary.simpleMessage("Great!"),
         "quickSett": MessageLookupByLibrary.simpleMessage("Quick Settings"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "start": MessageLookupByLibrary.simpleMessage("Start"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "userName": MessageLookupByLibrary.simpleMessage("User Name")
       };

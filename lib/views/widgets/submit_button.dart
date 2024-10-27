@@ -6,9 +6,11 @@ class SubmittButton extends StatelessWidget {
     super.key,
     this.onPressed,
     required this.text,
+    this.maxWidth,
   });
   final void Function()? onPressed;
   final String text;
+  final double? maxWidth;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,7 +21,9 @@ class SubmittButton extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         color: Theme.of(context).colorScheme.primaryContainer,
-        child: Center(child: Text(text, style: Styles.headlineMedium)),
+        child: SizedBox(
+            width: maxWidth,
+            child: Center(child: Text(text, style: Styles.headlineLarge))),
       ),
     );
   }

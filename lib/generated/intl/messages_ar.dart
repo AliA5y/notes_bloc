@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "editProfile": MessageLookupByLibrary.simpleMessage("الصفحة الشخصية"),
         "emptyNotes": MessageLookupByLibrary.simpleMessage("لا توجد ملاحظات"),
         "lang": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "language": MessageLookupByLibrary.simpleMessage("اختر اللغة"),
         "light": MessageLookupByLibrary.simpleMessage("فاتح"),
         "loadError":
             MessageLookupByLibrary.simpleMessage("فشل أثناء تحميل الملاحظات"),
@@ -43,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "obT5": MessageLookupByLibrary.simpleMessage("رائع!"),
         "quickSett": MessageLookupByLibrary.simpleMessage("إعدادات سريعة"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
+        "start": MessageLookupByLibrary.simpleMessage("إبدأ"),
         "theme": MessageLookupByLibrary.simpleMessage("نمط الإضاءة"),
         "userName": MessageLookupByLibrary.simpleMessage("إسم المستخدم")
       };

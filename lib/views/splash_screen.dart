@@ -2,9 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
-import 'package:notes_bloc/cubits/user_cubit/user_cubit.dart';
-import 'package:notes_bloc/views/edit_profile_view.dart';
 import 'package:notes_bloc/views/home_view.dart';
+import 'package:notes_bloc/views/language_setting_view.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -68,14 +67,7 @@ class SplashScreenState extends State<SplashScreen>
         _controller1.stop();
 
         if (!_onboarded) {
-          Navigator.pushReplacementNamed(context, HomeView.id);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => BlocProvider(
-                      create: (context) => UserCubit()..loadUser(),
-                      child: const EditProfileView())));
-          BlocProvider.of<LanguageCubit>(context).onBoard();
+          Navigator.pushReplacementNamed(context, LanguageSettingView.id);
         } else {
           Navigator.pushReplacementNamed(context, HomeView.id);
         }
