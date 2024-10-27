@@ -3,10 +3,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/generated/l10n.dart';
+import 'package:notes_bloc/helpers/request_helper.dart';
+import 'package:notes_bloc/helpers/request_states.dart';
 import 'package:notes_bloc/shared.dart';
 import 'package:notes_bloc/views/display_note_view.dart';
 import 'package:notes_bloc/views/widgets/app_logo_button.dart';
 import 'package:notes_bloc/views/widgets/note_item_tile.dart';
+import 'package:notes_bloc/views/widgets/failure_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../blocs/home/home_bloc.dart';
 import '../blocs/home/home_event.dart';
@@ -19,13 +23,39 @@ class HomeView extends StatelessWidget {
   HomeView({super.key});
   bool hasInitialized = false;
   static const id = 'home';
+  chekVersion(BuildContext context) async {
+    final verState = await RequestHelper.checkAppVersionState();
+    if (verState is OldVersionFailure) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return FailureDialog(
+                failure: verState, errorMessage: verState.getFailureMessage());
+          });
+    }
+  }
+
+  initUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getString(PrefsKeys.idKey) == null) {
+      log('handling id');
+      RequestHelper.handelDeviceId();
+    }
+  }
+
+  initPage(BuildContext context) async {
+    if (!hasInitialized) {
+      BlocProvider.of<NoteBloc>(context).add(Initial());
+      await chekVersion(context);
+      await initUser();
+      hasInitialized = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (!hasInitialized) {
-      BlocProvider.of<NoteBloc>(context).add(Initial());
-      hasInitialized = true;
-    }
+    initPage(context);
     return Scaffold(
       drawer: const NotesAppDrawer(),
       appBar: AppBar(

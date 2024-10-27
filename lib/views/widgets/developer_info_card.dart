@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:notes_bloc/functions.dart';
+import 'package:notes_bloc/helpers/functions.dart';
 import '../../generated/l10n.dart';
 
 class DeveloperInfoCard extends StatelessWidget {

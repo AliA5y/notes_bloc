@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "EditNote": MessageLookupByLibrary.simpleMessage("Edit a Note"),
         "addNote": MessageLookupByLibrary.simpleMessage("Add a Note"),
         "chooseAvatar": MessageLookupByLibrary.simpleMessage("Choose Avatar"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "dark": MessageLookupByLibrary.simpleMessage("dark"),
         "developed": MessageLookupByLibrary.simpleMessage("Developed By"),
         "editProfile": MessageLookupByLibrary.simpleMessage("User Profile"),
@@ -38,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "myname": MessageLookupByLibrary.simpleMessage("Ali Alzaidy"),
         "nameFieldHint":
             MessageLookupByLibrary.simpleMessage("Enter You User Name"),
+        "neterror": MessageLookupByLibrary.simpleMessage(
+            "Network error, ensure you have a stable connection or read a story from history untill connection is back"),
         "noteText": MessageLookupByLibrary.simpleMessage("Enter Note Text"),
         "noteTitle": MessageLookupByLibrary.simpleMessage("Enter Note Title"),
         "obT5": MessageLookupByLibrary.simpleMessage("Great!"),
@@ -45,6 +48,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
-        "userName": MessageLookupByLibrary.simpleMessage("User Name")
+        "update": MessageLookupByLibrary.simpleMessage("Update"),
+        "userName": MessageLookupByLibrary.simpleMessage("User Name"),
+        "versionerro": MessageLookupByLibrary.simpleMessage(
+            "Old Version !\nNew features are available. Please, update to latest version to enjoy a new experience")
       };
 }

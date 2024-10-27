@@ -21,6 +21,9 @@
     "myname":"Ali Alzaidy",
     "obT5":"Great!",
     "start":"Start",
-    "language":"choose a language"
-
+    "close":"Close",
+    "update":"Update",
+    "language":"choose a language",
+    "versionerro":"Old Version !\nNew features are available. Please, update to latest version to enjoy a new experience",
+    "neterror":"Network error, ensure you have a stable connection or read a story from history untill connection is back"
 }

@@ -16,9 +16,19 @@ class Styles {
   );
 }
 
+class Versions {
+//* Important: change this number with each app release
+  static const currentAppVer = 1;
+//* Important: change this number when you change how user id is fetched
+  static const currentUserIdVer = 1;
+//* Important: change this number when you update Db version
+  static const currentDbver = 1;
+}
+
 class PrefsKeys {
   static const String languageKey = 'language';
   static const String themeKey = 'theme';
+  static const String idKey = 'deviceId:${Versions.currentUserIdVer}';
 }
 
 bool isArabic() {

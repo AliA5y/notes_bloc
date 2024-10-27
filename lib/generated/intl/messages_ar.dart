@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
         "chooseAvatar":
             MessageLookupByLibrary.simpleMessage("إختر صورة تعبيرية"),
+        "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "dark": MessageLookupByLibrary.simpleMessage("داكن"),
         "developed": MessageLookupByLibrary.simpleMessage("مطور التطبيق"),
         "editProfile": MessageLookupByLibrary.simpleMessage("الصفحة الشخصية"),
@@ -39,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "myname": MessageLookupByLibrary.simpleMessage("علي عبدالرحمن"),
         "nameFieldHint":
             MessageLookupByLibrary.simpleMessage("أدخل إسم المستخدم"),
+        "neterror": MessageLookupByLibrary.simpleMessage(
+            "خطأ في الشبكة، تأكد من وجود اتصال انترنت مستقر وحاول مجدداً، أو اقرأ قصة من السجل إلى حين توفر اتصال انترنت"),
         "noteText": MessageLookupByLibrary.simpleMessage("أدخل نص الملاحظة"),
         "noteTitle": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
         "obT5": MessageLookupByLibrary.simpleMessage("رائع!"),
@@ -46,6 +49,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "start": MessageLookupByLibrary.simpleMessage("إبدأ"),
         "theme": MessageLookupByLibrary.simpleMessage("نمط الإضاءة"),
-        "userName": MessageLookupByLibrary.simpleMessage("إسم المستخدم")
+        "update": MessageLookupByLibrary.simpleMessage("تحديث"),
+        "userName": MessageLookupByLibrary.simpleMessage("إسم المستخدم"),
+        "versionerro": MessageLookupByLibrary.simpleMessage(
+            "إصدارالتطبيق قديم !\nتمت اضافة مميزات رائعة, يرجى تحديث التطبيق للإستمتاع بتجربة جديدة")
       };
 }

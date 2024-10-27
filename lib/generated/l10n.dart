@@ -260,11 +260,51 @@ class S {
     );
   }
 
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message(
+      'Update',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `choose a language`
   String get language {
     return Intl.message(
       'choose a language',
       name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Old Version !\nNew features are available. Please, update to latest version to enjoy a new experience`
+  String get versionerro {
+    return Intl.message(
+      'Old Version !\nNew features are available. Please, update to latest version to enjoy a new experience',
+      name: 'versionerro',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Network error, ensure you have a stable connection or read a story from history untill connection is back`
+  String get neterror {
+    return Intl.message(
+      'Network error, ensure you have a stable connection or read a story from history untill connection is back',
+      name: 'neterror',
       desc: '',
       args: [],
     );
