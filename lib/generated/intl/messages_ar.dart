@@ -24,10 +24,18 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EditNote": MessageLookupByLibrary.simpleMessage("تعديل ملاحظة"),
         "addNote": MessageLookupByLibrary.simpleMessage("إضافة ملاحظة"),
+        "appCloseMsg": MessageLookupByLibrary.simpleMessage(
+            "هل تريد بالفعل مغادرة التطبيق؟"),
+        "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "chooseAvatar":
             MessageLookupByLibrary.simpleMessage("إختر صورة تعبيرية"),
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
+        "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "dark": MessageLookupByLibrary.simpleMessage("داكن"),
+        "deleteMultiNotesMsg": MessageLookupByLibrary.simpleMessage(
+            "هل تريد بالفعل حذف جميع الملاحظات المحددة؟"),
+        "deleteNoteMsg": MessageLookupByLibrary.simpleMessage(
+            "هل تريد بالفعل حذف الملاحظة؟"),
         "developed": MessageLookupByLibrary.simpleMessage("مطور التطبيق"),
         "editProfile": MessageLookupByLibrary.simpleMessage("الصفحة الشخصية"),
         "emptyNotes": MessageLookupByLibrary.simpleMessage("لا توجد ملاحظات"),

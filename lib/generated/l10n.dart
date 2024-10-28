@@ -280,6 +280,56 @@ class S {
     );
   }
 
+  /// `Do you really want to delete this note?`
+  String get deleteNoteMsg {
+    return Intl.message(
+      'Do you really want to delete this note?',
+      name: 'deleteNoteMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete all the selected notes?`
+  String get deleteMultiNotesMsg {
+    return Intl.message(
+      'Do you really want to delete all the selected notes?',
+      name: 'deleteMultiNotesMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to close the app?`
+  String get appCloseMsg {
+    return Intl.message(
+      'Do you really want to close the app?',
+      name: 'appCloseMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `choose a language`
   String get language {
     return Intl.message(

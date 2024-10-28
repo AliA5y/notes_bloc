@@ -98,9 +98,9 @@ class _HomeViewState extends State<HomeView> {
                       Navigator.pop(context);
                       canPop = true;
                     },
-                    title: 'Do you really want to close the app?',
-                    cancelText: 'Cancel',
-                    confirmText: 'Confirm',
+                    title: S.of(context).appCloseMsg,
+                    cancelText: S.of(context).cancel,
+                    confirmText: S.of(context).confirm,
                   );
                 });
           }).then(
@@ -194,10 +194,9 @@ class _HomeViewState extends State<HomeView> {
                                       notesBloc.add(DeleteNote(id: note.id!));
                                       Navigator.pop(context);
                                     },
-                                    title:
-                                        'Do you really want to delete this note?',
-                                    cancelText: 'Cancel',
-                                    confirmText: 'Confirm',
+                                    title: S.of(context).deleteNoteMsg,
+                                    cancelText: S.of(context).cancel,
+                                    confirmText: S.of(context).confirm,
                                   ),
                                 );
                               });
@@ -254,10 +253,9 @@ class _HomeViewState extends State<HomeView> {
                           setState(() {});
                           Navigator.pop(context);
                         },
-                        title:
-                            'Do you really want to delete all the selected notes?',
-                        cancelText: 'Cancel',
-                        confirmText: 'Confirm',
+                        title: S.of(context).deleteMultiNotesMsg,
+                        cancelText: S.of(context).cancel,
+                        confirmText: S.of(context).confirm,
                       ),
                     );
                   });

@@ -24,9 +24,17 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EditNote": MessageLookupByLibrary.simpleMessage("Edit a Note"),
         "addNote": MessageLookupByLibrary.simpleMessage("Add a Note"),
+        "appCloseMsg": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to close the app?"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chooseAvatar": MessageLookupByLibrary.simpleMessage("Choose Avatar"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "dark": MessageLookupByLibrary.simpleMessage("dark"),
+        "deleteMultiNotesMsg": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to delete all the selected notes?"),
+        "deleteNoteMsg": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to delete this note?"),
         "developed": MessageLookupByLibrary.simpleMessage("Developed By"),
         "editProfile": MessageLookupByLibrary.simpleMessage("User Profile"),
         "emptyNotes": MessageLookupByLibrary.simpleMessage("No Notes Found"),
