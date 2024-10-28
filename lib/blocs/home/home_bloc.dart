@@ -9,15 +9,15 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
 
   NoteBloc(this.noteRepository) : super(NoteInitial()) {
     on<NoteEvent>((event, emit) async {
-      emit(NoteLoading());
-
-      try {
-        final List<NoteModel> notes = await noteRepository.getAllNotes();
-        emit(NoteLoadSuccess(notes));
-      } catch (e) {
-        emit(NoteOperationFailure("Failed to fetch notes: $e"));
-      }
-      if (event is AddNote) {
+      if (event is Initial) {
+        emit(NoteLoading());
+        try {
+          final List<NoteModel> notes = await noteRepository.getAllNotes();
+          emit(NoteLoadSuccess(notes));
+        } catch (e) {
+          emit(NoteOperationFailure("Failed to fetch notes: $e"));
+        }
+      } else if (event is AddNote) {
         emit(NoteLoading());
 
         try {
@@ -56,13 +56,21 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         }
       } else if (event is DeleteNote) {
         emit(NoteLoading());
-
         try {
           await noteRepository.deleteNote(event.id);
           final List<NoteModel> notes = await noteRepository.getAllNotes();
           emit(NoteLoadSuccess(notes));
         } catch (e) {
           emit(NoteOperationFailure("Failed to delete note: $e"));
+        }
+      } else if (event is DeleteNoteList) {
+        emit(NoteLoading());
+        try {
+          await noteRepository.deleteNotesList(event.ids);
+          final List<NoteModel> notes = await noteRepository.getAllNotes();
+          emit(NoteLoadSuccess(notes));
+        } catch (e) {
+          emit(NoteOperationFailure("Failed to delete notes: $e"));
         }
       }
     });

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/cubits/theme_cubit/theme_cubit.dart';
 import 'package:notes_bloc/data/repositories/home_repository.dart';
+import 'package:notes_bloc/simple_bloc_observer.dart';
 import 'package:notes_bloc/views/edit_profile_view.dart';
 import 'package:notes_bloc/views/home_view.dart';
 import 'package:notes_bloc/views/language_setting_view.dart';
@@ -37,8 +38,11 @@ void main() async {
     // this step, it will use the sqlite version available on the system.
     databaseFactory = databaseFactoryFfi;
   }
+  Bloc.observer = SimpleBlocObserver();
+
   final lanCubit = LanguageCubit();
   await lanCubit.initLanguage();
+
   runApp(MyApp(lanCubit: lanCubit));
 }
 
@@ -89,7 +93,7 @@ class MyApp extends StatelessWidget {
                       const LanguageSettingView(),
                   HomeView.id: (context) => BlocProvider(
                         create: (context) => NoteBloc(repo),
-                        child: HomeView(),
+                        child: const HomeView(),
                       )
                 },
               );

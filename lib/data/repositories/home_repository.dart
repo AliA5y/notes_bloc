@@ -1,6 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
 import '../models/note_model.dart';
 
 class NoteRepository {
@@ -69,5 +68,13 @@ class NoteRepository {
   Future<void> deleteNote(int id) async {
     final database = await instance.database;
     await database.delete('notes', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<void> deleteNotesList(List<int> ids) async {
+    final database = await instance.database;
+
+    for (final id in ids) {
+      await database.delete('notes', where: 'id = ?', whereArgs: [id]);
+    }
   }
 }

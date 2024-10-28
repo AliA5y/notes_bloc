@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -151,7 +149,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                           avatarCode: avatarCodes[selectedAvatar]));
                       if (context.mounted) {
                         if (widget.isInitilizing) {
-                          log('jf');
                           BlocProvider.of<LanguageCubit>(context).onBoard();
                           Navigator.pushReplacementNamed(context, HomeView.id);
                         } else {

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +7,6 @@ import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/generated/l10n.dart';
 import 'package:notes_bloc/shared.dart';
 import 'package:notes_bloc/views/widgets/submit_button.dart';
-
 import '../data/models/note_model.dart';
 
 const languages = ['عربي', 'English'];
@@ -86,7 +83,6 @@ class NoteEditingViewState extends State<NoteEditingView> {
                                         : languages[index]
                                             .substring(0, 2)
                                             .toLowerCase();
-                                    log(language);
                                     if (!isArabic() && language == 'ar') {
                                       context
                                           .read<LanguageCubit>()
@@ -141,7 +137,6 @@ class NoteEditingViewState extends State<NoteEditingView> {
   _handleSubmition() {
     final title = _titleController.text;
     final content = _contentController.text;
-    log("${title.length}\n${content.length}");
     if (widget.note == null) {
       if (title.isNotEmpty || content.isNotEmpty) {
         final dateTime = MyDateTime.fromDateTime(DateTime.now());

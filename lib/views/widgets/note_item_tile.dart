@@ -8,11 +8,15 @@ class NoteItemTile extends StatelessWidget {
       required this.note,
       this.onEdit,
       this.onDelete,
-      this.onDisplay});
+      this.onDisplay,
+      this.onLongPress,
+      required this.isSelectionMode});
   final NoteModel note;
   final void Function()? onDelete;
   final void Function()? onDisplay;
   final void Function()? onEdit;
+  final void Function()? onLongPress;
+  final bool isSelectionMode;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +24,7 @@ class NoteItemTile extends StatelessWidget {
       textDirection:
           note.language == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: MaterialButton(
+        onLongPress: onLongPress,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
@@ -70,16 +75,19 @@ class NoteItemTile extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.max,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.delete, size: 32),
-                                  onPressed: onDelete,
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.edit, size: 32),
-                                  onPressed: onEdit,
-                                ),
-                              ],
+                              children: isSelectionMode
+                                  ? [const SizedBox()]
+                                  : [
+                                      IconButton(
+                                        icon:
+                                            const Icon(Icons.delete, size: 32),
+                                        onPressed: onDelete,
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(Icons.edit, size: 32),
+                                        onPressed: onEdit,
+                                      ),
+                                    ],
                             ),
                           ),
                           Expanded(

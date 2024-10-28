@@ -43,3 +43,8 @@ class DeleteNote extends NoteEvent {
 
   DeleteNote({required this.id});
 }
+
+class DeleteNoteList extends NoteEvent {
+  final List<int> ids;
+  DeleteNoteList({required this.ids});
+}
