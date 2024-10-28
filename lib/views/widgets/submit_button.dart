@@ -7,10 +7,12 @@ class SubmittButton extends StatelessWidget {
     this.onPressed,
     required this.text,
     this.maxWidth,
+    this.isLoading = false,
   });
   final void Function()? onPressed;
   final String text;
   final double? maxWidth;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,7 +25,13 @@ class SubmittButton extends StatelessWidget {
         color: Theme.of(context).colorScheme.primaryContainer,
         child: SizedBox(
             width: maxWidth,
-            child: Center(child: Text(text, style: Styles.headlineLarge))),
+            child: Center(
+              child: isLoading
+                  ? const CircularProgressIndicator(
+                      strokeWidth: 2,
+                    )
+                  : Text(text, style: Styles.headlineLarge),
+            )),
       ),
     );
   }

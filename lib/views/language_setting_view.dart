@@ -4,7 +4,6 @@ import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/cubits/user_cubit/user_cubit.dart';
 import 'package:notes_bloc/generated/l10n.dart';
 import 'package:notes_bloc/views/edit_profile_view.dart';
-import 'package:notes_bloc/views/home_view.dart';
 import 'package:notes_bloc/views/widgets/language_chip.dart';
 import 'package:notes_bloc/views/widgets/submit_button.dart';
 
@@ -47,14 +46,14 @@ class LanguageSettingView extends StatelessWidget {
                   maxWidth: 140,
                   text: S.of(context).start,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, HomeView.id);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => BlocProvider(
                                 create: (context) => UserCubit()..loadUser(),
-                                child: const EditProfileView())));
-                    BlocProvider.of<LanguageCubit>(context).onBoard();
+                                child: const EditProfileView(
+                                  isInitilizing: true,
+                                ))));
                   },
                 ),
               )

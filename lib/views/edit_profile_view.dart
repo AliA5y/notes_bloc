@@ -1,21 +1,23 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:multiavatar/multiavatar.dart';
+import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/cubits/user_cubit/user_cubit.dart';
 import 'package:notes_bloc/data/models/user.dart';
 import 'package:notes_bloc/generated/l10n.dart';
 import 'package:notes_bloc/shared.dart';
+import 'package:notes_bloc/views/home_view.dart';
 import 'package:notes_bloc/views/widgets/submit_button.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfileView extends StatefulWidget {
-  const EditProfileView({super.key, this.user});
+  const EditProfileView({super.key, this.user, this.isInitilizing = false});
   static const String id = 'editProfileView';
   final User? user;
-
+  final bool isInitilizing;
   @override
   State<EditProfileView> createState() => _EditProfileViewState();
 }
@@ -24,6 +26,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   int selectedAvatar = 0;
   final tc = TextEditingController();
   bool isLoading = true;
+
   Timer? timer;
   @override
   void initState() {
@@ -41,6 +44,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: !widget.isInitilizing,
         title: Text(S.of(context).editProfile),
         backgroundColor: Theme.of(context).colorScheme.surface,
         surfaceTintColor: Colors.transparent,
@@ -135,21 +139,30 @@ class _EditProfileViewState extends State<EditProfileView> {
               ),
             ),
             const SizedBox(height: 16),
-            SubmittButton(
-                onPressed: () async {
-                  final sp = await SharedPreferences.getInstance();
-                  sp.setString(
-                      'name',
-                      tc.text.isEmpty
-                          ? widget.user?.name ?? S.current.userName
-                          : tc.text);
-                  sp.setInt('avatar', avatarCodes[selectedAvatar]);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                    context.read<UserCubit>().loadUser();
-                  }
-                },
-                text: S.of(context).save),
+            BlocBuilder<UserCubit, UserState>(
+              builder: (context, state) {
+                return SubmittButton(
+                    isLoading: state is UserUpdateLoading,
+                    onPressed: () async {
+                      await context.read<UserCubit>().updateUser(User(
+                          name: tc.text.isEmpty
+                              ? widget.user?.name ?? S.current.userName
+                              : tc.text,
+                          avatarCode: avatarCodes[selectedAvatar]));
+                      if (context.mounted) {
+                        if (widget.isInitilizing) {
+                          log('jf');
+                          BlocProvider.of<LanguageCubit>(context).onBoard();
+                          Navigator.pushReplacementNamed(context, HomeView.id);
+                        } else {
+                          Navigator.pop(context);
+                          context.read<UserCubit>().loadUser();
+                        }
+                      }
+                    },
+                    text: S.of(context).save);
+              },
+            ),
           ],
         ),
       ),

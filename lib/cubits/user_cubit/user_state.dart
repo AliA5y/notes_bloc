@@ -12,3 +12,11 @@ final class UserloadSuccess extends UserState {
 
   UserloadSuccess({required this.user});
 }
+
+final class UserUpdateLoading extends UserState {}
+
+final class UserUpdateSuccess extends UserState {
+  final User user;
+
+  UserUpdateSuccess({required this.user});
+}

@@ -26,22 +26,34 @@ class HomeView extends StatelessWidget {
   chekVersion(BuildContext context) async {
     final verState = await RequestHelper.checkAppVersionState();
     if (verState is OldVersionFailure) {
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) {
-            return FailureDialog(
-                failure: verState, errorMessage: verState.getFailureMessage());
-          });
+      if (context.mounted) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return FailureDialog(
+                  failure: verState,
+                  errorMessage: verState.getFailureMessage());
+            });
+      }
     }
   }
 
   initUser() async {
     final prefs = await SharedPreferences.getInstance();
-    if (prefs.getString(PrefsKeys.idKey) == null) {
-      log('handling id');
-      RequestHelper.handelDeviceId();
+    final hasInitUser = (prefs.getBool(PrefsKeys.idInitFlagKey));
+    if (hasInitUser == null) {
+    } else {
+      if (!hasInitUser) {
+        log('handling id');
+        final initState = await RequestHelper.handelDeviceId(updateUser: true);
+        log(initState.toString());
+        if (initState is Success) {
+          prefs.setBool(PrefsKeys.idInitFlagKey, true);
+        }
+      }
     }
+    log(hasInitUser.toString());
   }
 
   initPage(BuildContext context) async {
