@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notes_bloc/helpers/functions.dart';
 import 'package:notes_bloc/helpers/request_states.dart';
+import 'package:notes_bloc/shared.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../generated/l10n.dart';
 
@@ -9,6 +11,12 @@ class FailureDialog extends StatelessWidget {
       {super.key, required this.errorMessage, required this.failure});
   final String errorMessage;
   final RequestState failure;
+
+  Future<String> _getUpdateLink() async {
+    return (await SharedPreferences.getInstance())
+            .getString(PrefsKeys.updateLink) ??
+        'https://alia5y.github.io/notes_bloc/apk/Notes%20Bloc.apk';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +49,9 @@ class FailureDialog extends StatelessWidget {
                         ?.copyWith(fontSize: 19),
                   ),
                   TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (failure is OldVersionFailure) {
-                          String link =
-                              'https://play.google.com/store/apps/details?id=com.story.route9';
-
+                          String link = await _getUpdateLink();
                           final Uri url = Uri.parse(link);
                           launchAUrl(url);
                           Navigator.pop(context);

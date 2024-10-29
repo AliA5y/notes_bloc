@@ -17,6 +17,8 @@ class RequestHelper {
       final docRef = fireIns.collection('settings').doc('configs');
       final doc = await docRef.get();
       final data = doc.data() as Map<String, dynamic>;
+      (await SharedPreferences.getInstance())
+          .setString('updateLink', data['updateLink']);
       if (Versions.currentAppVer >= (data['minAllowedVersion'] as int)) {
         return Success();
       } else {

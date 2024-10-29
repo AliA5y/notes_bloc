@@ -29,6 +29,7 @@ class PrefsKeys {
   static const String languageKey = 'language';
   static const String themeKey = 'theme';
   static const String nameKey = 'name';
+  static const String updateLink = 'updateLink';
   static const String avatarKey = 'avatar';
   static const String idInitFlagKey = 'idInitFlagKey';
   static const String idKey = 'deviceId:${Versions.currentUserIdVer}';
