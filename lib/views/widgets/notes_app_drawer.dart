@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/cubits/user_cubit/user_cubit.dart';
+import 'package:notes_bloc/features/admin/views/admin_screen.dart';
 import 'package:notes_bloc/views/widgets/quick_settings_section.dart';
 import 'package:notes_bloc/views/widgets/user_profile.dart';
 
@@ -28,7 +29,27 @@ class NotesAppDrawer extends StatelessWidget {
                       child: const UserProfile(),
                     ),
                     const Divider(height: 32),
-                    const QuickSettingsSection()
+                    const QuickSettingsSection(),
+                    const Divider(height: 32),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: const Icon(
+                            Icons.person,
+                            size: 38,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const AdminScreen(),
+                                ));
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 4),
                   ],
                 ),
               ),
