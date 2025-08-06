@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_bloc/data/models/note_model.dart';
 import 'package:notes_bloc/shared.dart';
+import 'package:notes_bloc/shared/app_theme.dart';
 
 class NoteItemTile extends StatelessWidget {
   const NoteItemTile(
@@ -10,6 +11,7 @@ class NoteItemTile extends StatelessWidget {
       this.onDelete,
       this.onDisplay,
       this.onLongPress,
+      this.color,
       required this.isSelectionMode});
   final NoteModel note;
   final void Function()? onDelete;
@@ -17,6 +19,7 @@ class NoteItemTile extends StatelessWidget {
   final void Function()? onEdit;
   final void Function()? onLongPress;
   final bool isSelectionMode;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,7 @@ class NoteItemTile extends StatelessWidget {
         child: SizedBox(
           height: 142,
           child: Card(
+              color: color ?? AppTheme.getBackground(context),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16)),
               ),

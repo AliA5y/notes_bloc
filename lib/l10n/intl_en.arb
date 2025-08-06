@@ -30,5 +30,9 @@
     "confirm":"Confirm",
     "language":"choose a language",
     "versionerro":"Old Version !\nNew features are available. Please, update to latest version to enjoy a new experience",
-    "neterror":"Network error, ensure you have a stable connection or read a story from history untill connection is back"
+    "neterror":"Network error, ensure you have a stable connection or read a story from history untill connection is back",
+    "contactOn":"Contact Me On:",
+    "copied":"Copied",
+    "isRequired":"Name is Required",
+    "lengthMustBe":"Name must be 3 characters at least"
 }
