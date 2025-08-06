@@ -84,27 +84,38 @@ class _HomeViewState extends State<HomeView> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        Tools.showCustomBottomSheet(
-          context,
-          body: Text(
-            S.of(context).appCloseMsg,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          submitButton: SubmittButton(
-            text: S.of(context).confirm,
-            color: Colors.red,
-            textStyle: Styles.headlineLarge.copyWith(color: Colors.white),
-            onPressed: () async {
-              exit(0);
-            },
-          ),
-          secondaryButton: SubmittButton(
-            text: S.of(context).cancel,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        );
+        if (isSelectionMode) {
+          selectedNotes.clear();
+          isSelectionMode = false;
+          setState(() {});
+        } else {
+          Tools.showCustomBottomSheet(
+            context,
+            body: Text(
+              S.of(context).appCloseMsg,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            submitButton: SubmittButton(
+              text: S.of(context).confirm,
+              color: Colors.red,
+              textStyle: Styles.headlineLarge.copyWith(color: Colors.white),
+              onPressed: () async {
+                exit(0);
+              },
+            ),
+            secondaryButton: SubmittButton(
+              text: S.of(context).cancel,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          );
+          // Future(
+          //   () {},
+          // ).then(
+          //   (value) {},
+          // );
+        }
       },
       child: Scaffold(
         drawer: const NotesAppDrawer(),
@@ -238,27 +249,34 @@ class _HomeViewState extends State<HomeView> {
           onPressed: () {
             if (isSelectionMode) {
               final notesBloc = context.read<NoteBloc>();
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return BlocProvider.value(
-                      value: notesBloc,
-                      child: ActionConfirmationDialog(
-                        onCancel: () {
-                          Navigator.pop(context);
-                        },
-                        onConfirm: () {
-                          notesBloc.add(DeleteNoteList(ids: selectedNotes));
-                          isSelectionMode = false;
-                          setState(() {});
-                          Navigator.pop(context);
-                        },
-                        title: S.of(context).deleteMultiNotesMsg,
-                        cancelText: S.of(context).cancel,
-                        confirmText: S.of(context).confirm,
-                      ),
-                    );
-                  });
+              Tools.showCustomBottomSheet(
+                context,
+                body: Text(
+                  S.of(context).deleteMultiNotesMsg,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                submitButton: BlocProvider.value(
+                  value: notesBloc,
+                  child: SubmittButton(
+                    text: S.of(context).confirm,
+                    color: Colors.red,
+                    textStyle:
+                        Styles.headlineLarge.copyWith(color: Colors.white),
+                    onPressed: () {
+                      notesBloc.add(DeleteNoteList(ids: selectedNotes));
+                      isSelectionMode = false;
+                      setState(() {});
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                secondaryButton: SubmittButton(
+                  text: S.of(context).cancel,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              );
             } else {
               _navigateToNoteEditingView(context, null);
             }
