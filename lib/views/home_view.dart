@@ -1,14 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_bloc/generated/l10n.dart';
 import 'package:notes_bloc/helpers/request_helper.dart';
 import 'package:notes_bloc/helpers/request_states.dart';
+import 'package:notes_bloc/helpers/tools.dart';
 import 'package:notes_bloc/shared.dart';
 import 'package:notes_bloc/views/display_note_view.dart';
 import 'package:notes_bloc/views/widgets/app_logo_button.dart';
 import 'package:notes_bloc/views/widgets/note_item_tile.dart';
 import 'package:notes_bloc/views/widgets/failure_dialog.dart';
+import 'package:notes_bloc/views/widgets/submit_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../blocs/home/home_bloc.dart';
 import '../blocs/home/home_event.dart';
@@ -79,39 +82,29 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: canPop,
-      onPopInvokedWithResult: (didPop, result) async {
-        if (isSelectionMode) {
-          selectedNotes.clear();
-          isSelectionMode = false;
-          setState(() {});
-        } else {
-          Future(() async {
-            await showDialog(
-                context: context,
-                builder: (context) {
-                  return ActionConfirmationDialog(
-                    onCancel: () {
-                      Navigator.pop(context);
-                    },
-                    onConfirm: () {
-                      Navigator.pop(context);
-                      canPop = true;
-                    },
-                    title: S.of(context).appCloseMsg,
-                    cancelText: S.of(context).cancel,
-                    confirmText: S.of(context).confirm,
-                  );
-                });
-          }).then(
-            (value) {
-              setState(() {});
-              if (canPop) {
-                SystemNavigator.pop();
-              }
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        Tools.showCustomBottomSheet(
+          context,
+          body: Text(
+            S.of(context).appCloseMsg,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          submitButton: SubmittButton(
+            text: S.of(context).confirm,
+            color: Colors.red,
+            textStyle: Styles.headlineLarge.copyWith(color: Colors.white),
+            onPressed: () async {
+              exit(0);
             },
-          );
-        }
+          ),
+          secondaryButton: SubmittButton(
+            text: S.of(context).cancel,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        );
       },
       child: Scaffold(
         drawer: const NotesAppDrawer(),
