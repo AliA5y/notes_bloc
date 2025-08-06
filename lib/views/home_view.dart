@@ -174,25 +174,32 @@ class _HomeViewState extends State<HomeView> {
                         },
                         onDelete: () {
                           final notesBloc = context.read<NoteBloc>();
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return BlocProvider.value(
-                                  value: notesBloc,
-                                  child: ActionConfirmationDialog(
-                                    onCancel: () {
-                                      Navigator.pop(context);
-                                    },
-                                    onConfirm: () {
-                                      notesBloc.add(DeleteNote(id: note.id!));
-                                      Navigator.pop(context);
-                                    },
-                                    title: S.of(context).deleteNoteMsg,
-                                    cancelText: S.of(context).cancel,
-                                    confirmText: S.of(context).confirm,
-                                  ),
-                                );
-                              });
+                          Tools.showCustomBottomSheet(
+                            context,
+                            body: Text(
+                              S.of(context).deleteNoteMsg,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            submitButton: BlocProvider.value(
+                              value: notesBloc,
+                              child: SubmittButton(
+                                text: S.of(context).confirm,
+                                color: Colors.red,
+                                textStyle: Styles.headlineLarge
+                                    .copyWith(color: Colors.white),
+                                onPressed: () {
+                                  notesBloc.add(DeleteNote(id: note.id!));
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                            secondaryButton: SubmittButton(
+                              text: S.of(context).cancel,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          );
                         },
                         onDisplay: () {
                           if (isSelectionMode) {
