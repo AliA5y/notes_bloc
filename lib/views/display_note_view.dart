@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:notes_bloc/generated/l10n.dart';
+import 'package:notes_bloc/helpers/tools.dart';
 
 import '../data/models/note_model.dart';
 
@@ -56,15 +58,13 @@ class DisplayNoteView extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary.withAlpha(80)),
               child: InkWell(
                 onTap: () {
-                  Clipboard.setData(ClipboardData(
-                          text: '${note.title}\n\n${note.content}'))
-                      .then(
+                  Clipboard.setData(ClipboardData(text: note.content)).then(
                     (_) {
-                      // if (context.mounted) {
-                      //   Tools.showCustomSnackbar(context,
-                      //       message: S.of(context).copied,
-                      //       type: NotificationType.success);
-                      // }
+                      if (context.mounted) {
+                        Tools.showCustomSnackbar(context,
+                            message: S.of(context).copied,
+                            type: NotificationType.success);
+                      }
                     },
                   );
                 },
