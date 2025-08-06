@@ -278,6 +278,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Contact Me On:`
+  String get contactOn {
+    return Intl.message(
+      'Contact Me On:',
+      name: 'contactOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied`
+  String get copied {
+    return Intl.message('Copied', name: 'copied', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

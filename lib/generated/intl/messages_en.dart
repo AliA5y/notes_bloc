@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "chooseAvatar": MessageLookupByLibrary.simpleMessage("Choose Avatar"),
     "close": MessageLookupByLibrary.simpleMessage("Close"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+    "contactOn": MessageLookupByLibrary.simpleMessage("Contact Me On:"),
+    "copied": MessageLookupByLibrary.simpleMessage("Copied"),
     "dark": MessageLookupByLibrary.simpleMessage("dark"),
     "deleteMultiNotesMsg": MessageLookupByLibrary.simpleMessage(
       "Do you really want to delete all the selected notes?",
