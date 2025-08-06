@@ -165,69 +165,67 @@ class _HomeViewState extends State<HomeView> {
                   itemCount: notes.length,
                   itemBuilder: (context, index) {
                     final note = notes[index];
-                    return ColoredBox(
+                    return NoteItemTile(
                       color: selectedNotes.contains(note.id!)
-                          ? Colors.blue.withOpacity(0.5)
-                          : Colors.transparent,
-                      child: NoteItemTile(
-                        isSelectionMode: isSelectionMode,
-                        onLongPress: () {
-                          if (!isSelectionMode) {
-                            selectedNotes.clear();
-                            isSelectionMode = true;
-                            selectedNotes.add(note.id!);
-                            setState(() {});
-                          }
-                        },
-                        note: note,
-                        onEdit: () {
-                          _navigateToNoteEditingView(context, note);
-                        },
-                        onDelete: () {
-                          final notesBloc = context.read<NoteBloc>();
-                          Tools.showCustomBottomSheet(
-                            context,
-                            body: Text(
-                              S.of(context).deleteNoteMsg,
-                              style: Theme.of(context).textTheme.titleLarge,
-                            ),
-                            submitButton: BlocProvider.value(
-                              value: notesBloc,
-                              child: SubmittButton(
-                                text: S.of(context).confirm,
-                                color: Colors.red,
-                                textStyle: Styles.headlineLarge
-                                    .copyWith(color: Colors.white),
-                                onPressed: () {
-                                  notesBloc.add(DeleteNote(id: note.id!));
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ),
-                            secondaryButton: SubmittButton(
-                              text: S.of(context).cancel,
+                          ? Colors.blue.withAlpha(100)
+                          : null,
+                      isSelectionMode: isSelectionMode,
+                      onLongPress: () {
+                        if (!isSelectionMode) {
+                          selectedNotes.clear();
+                          isSelectionMode = true;
+                          selectedNotes.add(note.id!);
+                          setState(() {});
+                        }
+                      },
+                      note: note,
+                      onEdit: () {
+                        _navigateToNoteEditingView(context, note);
+                      },
+                      onDelete: () {
+                        final notesBloc = context.read<NoteBloc>();
+                        Tools.showCustomBottomSheet(
+                          context,
+                          body: Text(
+                            S.of(context).deleteNoteMsg,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          submitButton: BlocProvider.value(
+                            value: notesBloc,
+                            child: SubmittButton(
+                              text: S.of(context).confirm,
+                              color: Colors.red,
+                              textStyle: Styles.headlineLarge
+                                  .copyWith(color: Colors.white),
                               onPressed: () {
+                                notesBloc.add(DeleteNote(id: note.id!));
                                 Navigator.pop(context);
                               },
                             ),
-                          );
-                        },
-                        onDisplay: () {
-                          if (isSelectionMode) {
-                            if (selectedNotes.contains(note.id)) {
-                              selectedNotes.remove(note.id);
-                              if (selectedNotes.isEmpty) {
-                                isSelectionMode = false;
-                              }
-                            } else {
-                              selectedNotes.add(note.id!);
+                          ),
+                          secondaryButton: SubmittButton(
+                            text: S.of(context).cancel,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        );
+                      },
+                      onDisplay: () {
+                        if (isSelectionMode) {
+                          if (selectedNotes.contains(note.id)) {
+                            selectedNotes.remove(note.id);
+                            if (selectedNotes.isEmpty) {
+                              isSelectionMode = false;
                             }
-                            setState(() {});
                           } else {
-                            _navigateToDisplayNoteView(context, note);
+                            selectedNotes.add(note.id!);
                           }
-                        },
-                      ),
+                          setState(() {});
+                        } else {
+                          _navigateToDisplayNoteView(context, note);
+                        }
+                      },
                     );
                   },
                 );
