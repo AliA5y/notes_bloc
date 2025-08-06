@@ -43,8 +43,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "developed": MessageLookupByLibrary.simpleMessage("مطور التطبيق"),
     "editProfile": MessageLookupByLibrary.simpleMessage("الصفحة الشخصية"),
     "emptyNotes": MessageLookupByLibrary.simpleMessage("لا توجد ملاحظات"),
+    "isRequired": MessageLookupByLibrary.simpleMessage("الإسم مطلوب"),
     "lang": MessageLookupByLibrary.simpleMessage("اللغة"),
     "language": MessageLookupByLibrary.simpleMessage("اختر اللغة"),
+    "lengthMustBe": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون الاسم 3 أحرف على الأقل",
+    ),
     "light": MessageLookupByLibrary.simpleMessage("فاتح"),
     "loadError": MessageLookupByLibrary.simpleMessage(
       "فشل أثناء تحميل الملاحظات",

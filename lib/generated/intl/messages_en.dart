@@ -43,8 +43,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "developed": MessageLookupByLibrary.simpleMessage("Developed By"),
     "editProfile": MessageLookupByLibrary.simpleMessage("User Profile"),
     "emptyNotes": MessageLookupByLibrary.simpleMessage("No Notes Found"),
+    "isRequired": MessageLookupByLibrary.simpleMessage("Name is Required"),
     "lang": MessageLookupByLibrary.simpleMessage("Language"),
     "language": MessageLookupByLibrary.simpleMessage("choose a language"),
+    "lengthMustBe": MessageLookupByLibrary.simpleMessage(
+      "Name must be 3 characters at least",
+    ),
     "light": MessageLookupByLibrary.simpleMessage("light"),
     "loadError": MessageLookupByLibrary.simpleMessage("Failed to load notes"),
     "myNotes": MessageLookupByLibrary.simpleMessage("My Notes"),
