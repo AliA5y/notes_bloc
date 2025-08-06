@@ -19,13 +19,17 @@ Future<bool> isInternetAvailable() async {
   }
 }
 
-void launchAUrl(Uri url) async {
+Future<void> launchAUrl(Uri url, {Function()? onError}) async {
   try {
     if (await launchUrl(url)) {
     } else {
       throw 'did not launch $url';
     }
   } catch (e) {
-    throw 'Could not launch $url, ${e.toString()}';
+    if (onError != null) {
+      onError();
+    } else {
+      throw 'Could not launch $url, ${e.toString()}';
+    }
   }
 }
