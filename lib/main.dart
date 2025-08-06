@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_bloc/core/services/service_locator.dart';
 import 'package:notes_bloc/cubits/language_cubit/language_cubit.dart';
 import 'package:notes_bloc/cubits/theme_cubit/theme_cubit.dart';
 import 'package:notes_bloc/data/repositories/home_repository.dart';
@@ -20,6 +21,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Servicelocator.setup();
   await Firebase.initializeApp();
 
   FlutterError.onError = (errorDetails) {
