@@ -53,6 +53,7 @@ class LanguageSettingView extends StatelessWidget {
                                 create: (context) => UserCubit()..loadUser(),
                                 child: const EditProfileView(
                                   isInitilizing: true,
+                                  skipName: false,
                                 ))));
                   },
                 ),
