@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notes_bloc/views/widgets/developer_info_card.dart';
+import 'package:notes_bloc/helpers/tools.dart';
+import 'package:notes_bloc/views/widgets/developer_info_sheet_body.dart';
 
 class AppLogoButton extends StatelessWidget {
   const AppLogoButton({
@@ -31,12 +32,10 @@ class AppLogoButton extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         child: MaterialButton(
             onPressed: () {
-              showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (context) {
-                    return const DeveloperInfoCard();
-                  });
+              Tools.showCustomBottomSheet(
+                context,
+                body: const DeveloperInfoSheetBody(),
+              );
             },
             padding: const EdgeInsets.all(0),
             color: Theme.of(context).colorScheme.surface,

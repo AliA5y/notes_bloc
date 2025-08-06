@@ -278,6 +278,41 @@ class S {
       args: [],
     );
   }
+
+  /// `Contact Me On:`
+  String get contactOn {
+    return Intl.message(
+      'Contact Me On:',
+      name: 'contactOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied`
+  String get copied {
+    return Intl.message('Copied', name: 'copied', desc: '', args: []);
+  }
+
+  /// `Name is Required`
+  String get isRequired {
+    return Intl.message(
+      'Name is Required',
+      name: 'isRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name must be 3 characters at least`
+  String get lengthMustBe {
+    return Intl.message(
+      'Name must be 3 characters at least',
+      name: 'lengthMustBe',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
