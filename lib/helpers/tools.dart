@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 class Tools {
   static Future<void> showCustomBottomSheet(
     BuildContext context, {
-    String? title,
+    Widget? title,
     Widget? body, // Completely custom body content
     Widget? submitButton, // No data passed—just triggers action
     Widget? secondaryButton, // Optional secondary action
@@ -67,20 +67,8 @@ class Tools {
             const SizedBox(height: 8),
 
             // Optional Title
-            if (title != null) ...[
-              Row(
-                mainAxisAlignment: centerTitle
-                    ? MainAxisAlignment.center
-                    : MainAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
-            ],
+            if (title != null) ...[title],
+            const SizedBox(height: 16),
 
             // Optional custom body
             if (body != null) ...[

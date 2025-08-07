@@ -38,14 +38,16 @@ class _HomeViewState extends State<HomeView> {
     final verState = await RequestHelper.checkAppVersionState();
     if (verState is OldVersionFailure) {
       if (context.mounted) {
-        showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) {
-              return FailureDialog(
-                  failure: verState,
-                  errorMessage: verState.getFailureMessage());
-            });
+        Tools.showCustomBottomSheet(
+          context,
+          title: const Icon(
+            Icons.error_rounded,
+            size: 64,
+            color: Colors.red,
+          ),
+          body: FailureDialog(
+              failure: verState, errorMessage: verState.getFailureMessage()),
+        );
       }
     }
   }
