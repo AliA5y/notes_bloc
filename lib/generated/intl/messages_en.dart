@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "light": MessageLookupByLibrary.simpleMessage("light"),
     "loadError": MessageLookupByLibrary.simpleMessage("Failed to load notes"),
     "myNotes": MessageLookupByLibrary.simpleMessage("My Notes"),
-    "myname": MessageLookupByLibrary.simpleMessage("Ali Alzaidy"),
+    "myname": MessageLookupByLibrary.simpleMessage("Ali Abdulrahman Al-Zaidy"),
     "nameFieldHint": MessageLookupByLibrary.simpleMessage(
       "Enter You User Name",
     ),

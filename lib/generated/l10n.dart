@@ -184,9 +184,14 @@ class S {
     return Intl.message('Developed By', name: 'developed', desc: '', args: []);
   }
 
-  /// `Ali Alzaidy`
+  /// `Ali Abdulrahman Al-Zaidy`
   String get myname {
-    return Intl.message('Ali Alzaidy', name: 'myname', desc: '', args: []);
+    return Intl.message(
+      'Ali Abdulrahman Al-Zaidy',
+      name: 'myname',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Great!`
