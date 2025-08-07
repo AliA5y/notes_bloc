@@ -54,7 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "فشل أثناء تحميل الملاحظات",
     ),
     "myNotes": MessageLookupByLibrary.simpleMessage("مذكراتي"),
-    "myname": MessageLookupByLibrary.simpleMessage("علي عبدالرحمن"),
+    "myname": MessageLookupByLibrary.simpleMessage("علي عبدالرحمن الزيدي"),
     "nameFieldHint": MessageLookupByLibrary.simpleMessage("أدخل إسم المستخدم"),
     "neterror": MessageLookupByLibrary.simpleMessage(
       "خطأ في الشبكة، تأكد من وجود اتصال انترنت مستقر وحاول مجدداً، أو اقرأ قصة من السجل إلى حين توفر اتصال انترنت",
